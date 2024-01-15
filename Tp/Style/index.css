@@ -1,0 +1,18 @@
+article > img.img_jeux{
+    display :block;
+    width: 12.5rem;
+}
+nav img{
+    
+    width: 16px;
+    height: 16px;
+}
+nav li{
+    display: block;
+    width: 250px;
+    height: 25px;
+}
+article > img.img_plateform{
+    width: 16px;
+    height: 16px;
+}
