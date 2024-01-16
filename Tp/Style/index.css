@@ -16,3 +16,50 @@ article > img.img_plateform{
     width: 16px;
     height: 16px;
 }
+.conteneur{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 15fr 10fr auto 10fr;
+    grid-template-areas:
+      "entete  entete"
+      "categories    menu"
+      "categories jeux"
+      "footer footer"
+}
+
+.entete{
+    grid-area: entete;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.logo{
+    display: flex;
+    margin-left: 2rem;
+}
+
+.login{
+    display: flex;
+    margin-right: 2rem;
+}
+
+.categories{
+    grid-area: categories;
+
+    display: flex;
+}
+
+.menu{
+    grid-area: menu;
+
+    display: flex;
+
+}
+
+.jeux{
+    grid-area: jeux;
+    display: flex;
+    flex-wrap: wrap;
+}
