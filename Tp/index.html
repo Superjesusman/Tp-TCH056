@@ -6,22 +6,31 @@
         <title>Index de jeux</title>
         <meta charset="utf-8" lang="fr">
         <link rel="stylesheet" href="./Style/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
 </head>
 
 <body>
         <div class="conteneur">
                 <div class="entete">
-                        <img class="logo" src="img/entete/logo.png">
+                        <img class="logo" src="img/entete/giphy.gif">
                         <a href="?login" class="login">Log in</a>
                 </div>
                 <div class="menu">
-                        <div></div>
-                        <label for="plateformes"> ??? </label>
-                        <select name="plateformes" id="platformes" multiple>
-                                <option value="def">Toutes les plateformes</option>
+                        <select name="plateformes" id="bouton-plateformes" class="bouton-menu">
+                                <option value="Toutes">Toutes les plateformes</option>
+                                <option value="PC">PC</option>
                                 <option value="Xbox">Xbox</option>
                                 <option value="Playstation">Playstation</option>
-                                <option value="Windows">Windows</option>
+                        </select>
+                        <select name="triage" id="bouton-tri" class="bouton-menu">
+                                <option value="def">Trier par</option>
+                                <option value="pertinence">Pertinence</option>
+                                <option value="date">Date de sortie</option>
+                                <option value="nom">Nom</option>
+                                <option value="prix-crois">Prix croissant</option>
+                                <option value="prix-decrois">Prix decroissant</option>
                         </select>
                 </div>
                 <nav class="categories">
@@ -64,63 +73,138 @@
                 </nav>
 
                 <main class="jeux">
-                        <article>Five night's at Freddys<br><img src="img/Jeux/FNAF.png" class="img_jeux"
-                                        alt="FNAF" /><img src="img/Windows.png" class="img_plateform" alt="Win" />
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/FNAF.png" class="img_jeux" alt="FNAF" />
+                                </div>
+                                <h1>Five night's at Freddys</h1>
+                                <img src="img/Windows.png" class="img_plateform" alt="Win" />
                         </article>
-                        <article>GTA V<br><img src="img/Jeux/Grand_Theft_Auto_V.png" class="img_jeux" alt="GTAV" /><img
-                                        src="img/Xbox.png" class="img_plateform" alt="Xbox" /><img src="img/Windows.png"
-                                        alt="Win" class="img_plateform" /></article>
-                        <article>Spider-man 2<br><img src="img/Jeux/Spider_man_2.jpg" class="img_jeux"
-                                        alt="Spider-man2" /><img src="img/Playstation.png" class="img_plateform"
-                                        alt="Playstation" /></article>
-                        <article>Halo Infinite<br><img src="img/Jeux/Halo_Infinite.png" class="img_jeux"
-                                        alt="Halo Infinite" /><img src="img/Xbox.png" class="img_plateform"
-                                        alt="Xbox" /><img src="img/Windows.png" class="img_plateform" alt="Win" />
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Grand_Theft_Auto_V.png" class="img_jeux" alt="GTAV" />
+                                </div>
+                                <h1>GTA V</h1>
+                                <img src="img/Xbox.png" class="img_plateform" alt="Xbox" />
+                                <img src="img/Windows.png"alt="Win" class="img_plateform" />
                         </article>
-                        <article>Lethal Company<br><img src="img/Jeux/Lethal_company.jpg" class="img_jeux"
-                                        alt="Lethal Company" /><img src="img/Windows.png" class="img_plateform"
-                                        alt="Win" />
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Spider_man_2.jpg" class="img_jeux"alt="Spider-man2" />
+                                </div>
+                                <h1>Spider-man 2</h1>
+                                <img src="img/Playstation.png" class="img_plateform"alt="Playstation" />
                         </article>
-                        <article>Portal 2<br><img src="img/Jeux/Portal_2.jpg" class="img_jeux" alt="Portal_2" /><img
-                                        src="img/Playstation.png" alt="Playstation" class="img_plateform" /><img
-                                        src="img/Xbox.png" class="img_plateform" alt="Xbox" /><img src="img/Windows.png"
-                                        class="img_plateform" alt="Win" /></article>
-                        <article>Uncharted<br><img src="img/Jeux/Uncharted.jpg" class="img_jeux" alt="Uncharted" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Halo_Infinite.png" class="img_jeux" alt="Halo Infinite" />
+                                </div>
+                                <h1>Halo</h1>
+                                <img src="img/Xbox.png" class="img_plateform"alt="Xbox" />
+                                <img src="img/Windows.png" class="img_plateform" alt="Win" />
+                        </article>
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Lethal_company.jpg" class="img_jeux"alt="Lethal Company" />
+                                </div>
+                                <h1>Lethal Company</h1>
+                                <img src="img/Windows.png" class="img_plateform"alt="Win" />
+                        </article>
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Portal_2.jpg" class="img_jeux" alt="Portal_2" />
+                                </div>
+                                <h1>Portal 2</h1>
+                                <img src="img/Playstation.png" alt="Playstation" class="img_plateform" />
+                                <img src="img/Xbox.png" class="img_plateform" alt="Xbox" />
+                                <img src="img/Windows.png"class="img_plateform" alt="Win" />
+                        </article>
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Uncharted.jpg" class="img_jeux" alt="Uncharted" />
+                                </div>
+                                <h1>Uncharted</h1>
+                                <img
                                         src="img/Playstation.png" alt="Playstation" class="img_plateform" /><img
                                         src="img/Windows.png" class="img_plateform" alt="Win" /></article>
-                        <article>Uno<br><img src="img/Jeux/Uno.jpg" class="img_jeux" alt="Uno" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Uno.jpg" class="img_jeux" alt="Uno" />
+                                </div>
+                                <h1>Uno</h1>
+                                <img
                                         src="img/Playstation.png" alt="Playstation" width="20" height="20" /><img
                                         src="img/Windows.png" class="img_plateform" alt="Win" /></article>
-                        <article>Call of Duty<br><img src="img/Jeux/Cod.jpg" class="img_jeux" alt="CoD" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Cod.jpg" class="img_jeux" alt="CoD" />
+                                </div>
+                                <h1>Call of Duty</h1>
+                                <img
                                         src="img/Playstation.png" alt="Playstation" class="img_plateform" /><img
                                         src="img/Xbox.png" alt="Xbox" class="img_plateform" /><img src="img/Windows.png"
                                         alt="Win" class="img_plateform" /></article>
-                        <article>A Short hike<br><img src="img/Jeux/A_short_hike.jpg" class="img_jeux"
-                                        alt="A Short hike" /><img src="img/Windows.png" class="img_plateform"
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/A_short_hike.jpg" class="img_jeux"
+                                        alt="A Short hike" />
+                                </div>
+                                <h1>A Short hike</h1>
+                                <img src="img/Windows.png" class="img_plateform"
                                         alt="Win" /></article>
-                        <article>World of Warcraft<br><img src="img/Jeux/World_of_Warcraft.png" class="img_jeux"
-                                        alt="Warcraft" /><img src="img/Windows.png" class="img_plateform" alt="Win" />
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/World_of_Warcraft.png" class="img_jeux"
+                                        alt="Warcraft" />
+                                </div>
+                                <h1>World of Warcraft</h1>
+                                <img src="img/Windows.png" class="img_plateform" alt="Win" />
                         </article>
-                        <article>Just Dance<br><img src="img/Jeux/Just_Dance_4_cover_29.png" class="img_jeux"
-                                        alt="Just Dance" /><img src="img/Playstation.png" class="img_plateform"
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Just_Dance_4_cover_29.png" class="img_jeux"
+                                        alt="Just Dance" />
+                                </div>
+                                <h1>Just Dance</h1>
+                                <img src="img/Playstation.png" class="img_plateform"
                                         alt="Playstation" /><img src="img/Xbox.png" class="img_plateform" alt="Xbox" />
                         </article>
-                        <article>Forza horzion 5<br><img src="img/Jeux/Forza-horizon-5.png" class="img_jeux"
-                                        alt="Spider-man2" /><img src="img/Xbox.png" class="img_plateform"
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Forza-horizon-5.png" class="img_jeux"
+                                        alt="Forza-horizon-5" />
+                                </div>
+                                <h1>Forza horzion 5</h1>
+                                <img src="img/Xbox.png" class="img_plateform"
                                         alt="Xbox" /><img src="img/Windows.png" class="img_plateform" alt="Win" />
                         </article>
-                        <article>Sims 2<br><img src="img/Jeux/The_sims_2.jpg" class="img_jeux" alt="Sims 2" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/The_sims_2.jpg" class="img_jeux" alt="Sims 2" />
+                                </div>
+                                <h1>Sims 2</h1>
+                                <img
                                         src="img/Playstation.png" alt="Playstation" class="img_plateform" /><img
                                         src="img/Windows.png" alt="Win" class="img_plateform" /></article>
-                        <article>Fifa 23<br><img src="img/Jeux/Fifa_23.jpg" class="img_jeux" alt="Fifa_23" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Fifa_23.jpg" class="img_jeux" alt="Fifa_23" />
+                                </div>
+                                <h1>Fifa 23</h1>
+                                <img
                                         src="img/Playstation.png" class="img_plateform" alt="Playstation" /><img
                                         src="img/Xbox.png" alt="Xbox" class="img_plateform" /></article>
-                        <article>Pac-Man<br><img src="img/Jeux/Pacman.jpg" class="img_jeux" alt="Pac-Man" /><img
+                        <article>
+                                <div class="cover">
+                                        <img src="img/Jeux/Pacman.jpg" class="img_jeux" alt="Pac-Man" />
+                                </div>
+                                <h1>Pac-Man</h1>
+                                <img
                                         src="img/Playstation.png" class="img_plateform" alt="Playstation" /><img
                                         src="img/Xbox.png" class="img_plateform" alt="Xbox" /><img src="img/Windows.png"
                                         alt="Win" class="img_plateform" /></article>
                 </main>
-                <div class="footer"></div>
+                <div class="footer">Copyright Gab et Chrichri</div>
         </div>
 </body>
 
