@@ -1,9 +1,7 @@
 body {
-  background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
-  font-weight: 400;
-  font-style: normal;
+  background: rgb(0,0,0);
+  background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(84,122,180,1) 70%, rgba(177,161,255,1) 100%); 
+  font-family: 'DM Mono', monospace;
 }
 
 .conteneur {
@@ -11,60 +9,72 @@ body {
   grid-template-columns: 15.625rem auto;
   grid-template-rows: 15fr 10fr auto 10fr;
   grid-template-areas:
-    "entete  entete"
-    "categories    menu"
+    "entete     entete"
+    "categories menu"
     "categories jeux"
-    "footer footer";
+    "footer     footer";
 }
 
 .entete {
   grid-area: entete;
-  height: 40px;
+  height: 2rem;
+  margin: 1rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  display: flex;
-  margin-left: 2rem;
-  border-radius: 50px;
-  width: 2.5rem;
+  height: 6rem;
+  position: sticky;
+  top: initial;
 }
 
 .login {
-  display: flex;
   margin-right: 2rem;
 }
 
 .categories {
   grid-area: categories;
-  display: flex;
+
   background-color: white;
+  text-transform: uppercase;
+
   margin-left: 1rem;
   margin-right: 1rem;
   border-radius: 15px;
-  height: 90vh;
+  height: fit-content;
+  max-height: 90vh;
+
   position: sticky;
   top: 0;
   overflow: scroll;
-  text-transform: uppercase;
+
+  font-size: 20px;
+  font-weight: bolder;
+  color: rgb(28, 37, 51);
+}
+
+ul {
+  list-style-type: none;
+  margin-left: -2rem;
+  margin-top: 0.9rem;
 }
 
 nav li {
-  display: block;
   height: 1.563rem;
-  font-size: 18px;
-  font-weight: lighter;
-  margin-top: 0.775rem;
-  margin-bottom: 0.775rem;
-  justify-content: space-around;
+  margin: 0.5rem;
+  opacity: 0.6;
+}
 
+li:hover{
+  opacity: 1;;
 }
 
 .img_categorie {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 a {
@@ -78,16 +88,23 @@ a {
 }
 
 .bouton-menu {
-  border-radius: 25px;
   margin: 0.5rem;
-  /*background-color: rgb(126, 132, 255);*/
-  background-color: black;
-  color: aliceblue;
-  border: none;
+  background-color: rgba(40, 39, 49, 0);
   height: 1.5rem;
   padding-left: 0.5rem;
+
   text-transform: lowercase;
   font-weight: lighter;
+  color: aliceblue;
+
+  border-radius: 25px;
+  border-color: aliceblue;
+  border-style: solid;
+  border-width: 0.01rem;
+}
+
+.bouton-menu option {
+  color: rgba(40, 39, 49, 100);
 }
 
 .jeux {
@@ -98,36 +115,65 @@ a {
 }
 
 article {
-  background-color: rgba(255,255,255,0.75);
+  /* background-color: rgba(255,255,255,0.75); */
+  height: 20rem;
+  width: 19rem;
   margin: 0.45rem;
+
+  position: relative;
+  justify-content: center;
+  display: flex;
+
   border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-}
 
-h1 {
-  font-size: larger;
-  font-weight: bolder;
-  margin-left: .25rem;
-}
-
-.cover {
-  width: 14rem;
-  height: 15rem;
   overflow: hidden;
 }
 
-.cover .img_jeux {
+.img_jeux {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  z-index: 1; 
+}
+
+.name-cover{
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+  position:absolute;
+  bottom: 0;
+  z-index: 2;
+
+  margin: 0.5rem;
+  width:95%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: lighter;
+  margin-left: .25rem;
+  color: aliceblue;
+}
+
+.img_plateform{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  margin: 0.25rem;
 }
 
 .img_plateform img{
   width: 1rem;
   height: 1rem;
-  margin: 0.25rem;
-  margin-bottom: 0.5rem;
   opacity: 0.5;
+  margin: 0.25rem;
 }
 
