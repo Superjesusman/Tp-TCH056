@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="Style/normalize.css" />
+    <title>Index de jeux</title>
+    <meta charset="utf-8" lang="fr" />
+    <link rel="stylesheet" href="./Style/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="conteneur">
+      <div class="entete">
+        <img
+          class="logo"
+          src="img\entete\NVPlay-logos\NVPlay-logos_white.png"
+        />
+        <a href="?login" class="login">Log in</a>
+      </div>
+      <div class="menu">
+        <select name="plateformes" id="bouton-plateformes" class="bouton-menu">
+          <option value="Toutes">Toutes les plateformes</option>
+          <option value="PC">PC</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+        </select>
+        <select name="triage" id="bouton-tri" class="bouton-menu">
+          <option value="def">Trier par</option>
+          <option value="pertinence">Pertinence</option>
+          <option value="date">Date de sortie</option>
+          <option value="nom">Nom</option>
+          <option value="prix-crois">Prix croissant</option>
+          <option value="prix-decrois">Prix decroissant</option>
+        </select>
+      </div>
+      <nav class="categories">
+        <ul></ul>
+      </nav>
+      <main class="jeux">
+      </main>
+      <div class="footer">Copyright Gab et Chrichri</div>
+    </div>
+  </body>
+  <script src="./Scripts/script.js"></script>
+</html>
