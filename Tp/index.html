@@ -14,6 +14,23 @@
   </head>
 
   <body>
+    <dialog id="dialog1">   
+      <form action="./" method="post">
+        <label for="Nom_jeu">Nom de jeu: </label><input type="text" name="Nom_jeu" id="Nom_jeu" /><br />
+        <label for="img_jeu">URL de l'image: </label><input type="url" name="img_jeu" id="img_jeu" /><br />
+        <label for="plateformes">Plateformes: </label>
+        <select name="plateformes" id="platformes" multiple>
+            <option value="def">--Veuiller choisir une option--</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Playstation">Playstation</option>
+            <option value="Windows">Windows</option>
+        </select><br />
+        <input type="submit" value="Valider" />
+        <input type="reset" value="Effacer" /><br />
+    </form>
+    <button id="closeDialog">Close</button>
+    <button id="acceptDialog">Accept</button>
+    </dialog>
     <div class="conteneur">
       <div class="entete">
         <img
@@ -23,7 +40,7 @@
         <a href="?login" class="login">Log in</a>
       </div>
       <div class="menu">
-        <select name="plateformes" id="bouton-plateformes" class="bouton-menu">
+        <select name="plateformes" id="select-plateformes" class="bouton-menu">
           <option value="Toutes">Toutes les plateformes</option>
           <option value="PC">PC</option>
           <option value="Xbox">Xbox</option>
@@ -37,6 +54,7 @@
           <option value="prix-crois">Prix croissant</option>
           <option value="prix-decrois">Prix decroissant</option>
         </select>
+      
       </div>
       <nav class="categories">
         <ul>
@@ -101,6 +119,7 @@
             <a href="?categorie=15">Sports</a>
           </li>
         </ul>
+        <button id="ajouter-jeu">Nouveau Jeu</button>
       </nav>
       <main class="jeux">
         <article class="cover">
