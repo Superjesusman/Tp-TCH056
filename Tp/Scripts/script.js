@@ -28,7 +28,7 @@ let tableauJeux = [
     id: 2,
     titre: "Grand Theft Auto V",
     URL: "img/Jeux/Grand_Theft_Auto_V.jpg",
-    cat: 4,
+    cat: 1,
     platformes: [xbox, win],
   }),
   (spiderMan2 = {
@@ -301,12 +301,16 @@ function afficherCategorie(tab){
       const nouveauBtn = document.createElement("button");
       nouveauBtn.textContent = tab[i].nom;
 
-      nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
+      //nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
+      nouveauBtn.addEventListener('click', function(){
+        let categorie = tab[i].id;
+        filtrerJeu(categorie)}
+      );
       nouveauLi.append(nouveauImg, nouveauBtn);
       parent[0].append(nouveauLi);
   }
 }
 
-
 afficherCategorie(tableauCategorie);
 afficherJeux(tableauJeux);
+
