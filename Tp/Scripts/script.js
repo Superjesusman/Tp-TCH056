@@ -350,6 +350,45 @@ closeButton.addEventListener("click", () => {
   dialog.close();
 });
 
+
+acceptButton.addEventListener("click", () => {
+  nouveauTitre = document.getElementById("Nom_jeu").value;
+  nouveauURL = document.getElementById("img_jeu").value;
+  nouveauPlatformes = document.getElementById("platformes");
+  nouveauCategorie = document.getElementById("categories").value;
+  const plateformesSelectione = [];
+  for (const selection of nouveauPlatformes.options) {
+    if (selection.selected || selection.value == "def") {
+      if(selection.value == "Playstation"){
+        plateformesSelectione.push(tableauPlatforme[0]);
+      }
+      if(selection.value == "Xbox"){
+        plateformesSelectione.push(tableauPlatforme[1]);
+      }
+      if(selection.value == "Windows"){
+        plateformesSelectione.push(tableauPlatforme[2]);
+      }
+    }
+  }
+    //Pour tester
+    console.log(nouveauTitre + ", " + nouveauURL + ", " + plateformesSelectione);
+    //
+    nouveauJeu = {
+      id: tableauJeux.length + 1,
+      titre: nouveauTitre,
+      URL: nouveauURL,
+      cat: nouveauCategorie,
+      platformes: plateformesSelectione
+    }
+    dialog.close();
+    tableauJeux.push(nouveauJeu);
+    const parent = document.getElementsByClassName("jeux");
+    parent[0].replaceChildren();
+    afficherJeux(tableauJeux);
+  }
+);
+
+
 plat = null;
 categorie = null;
 const selectionPlateforme = document.getElementById("select-plateformes");
@@ -370,6 +409,8 @@ selectionPlateforme.addEventListener("change", (event) => {
   }
   filtrerJeu();
 });
+
+
 
 //script
 removeToTest();
