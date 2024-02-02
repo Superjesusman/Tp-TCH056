@@ -224,6 +224,68 @@ function afficherUnJeu(game, parent) {
   nouveauImg.src = game.URL;
   nouveauImg.alt = game.titre;
 
+  //Creer le bouton delete
+  const nouveauBtnDelete = document.createElement("button");
+  nouveauBtnDelete.classList = "btn-del";
+  nouveauBtnDelete.textContent = "Éffacer";
+  nouveauBtnDelete.addEventListener("click", () => {
+    tableauJeux.splice(tableauJeux.indexOf(game), 1);
+    const parent = document.getElementsByClassName("jeux");
+    parent[0].replaceChildren();
+    afficherJeux(tableauJeux);
+  })
+
+  //Creer le boutton modif
+  const dialog = document.querySelector("dialog#dialogModif");
+  const acceptBtnModif = document.getElementById("modifDialog");
+  const nouveauBtnModif = document.createElement("button");
+  nouveauBtnModif.classList = "btn-modif";
+  nouveauBtnModif.textContent = "Modifier";
+  nouveauBtnModif.addEventListener("click", () => {
+    dialog.showModal();
+    const closeModifButton = document.getElementById("closeModifDialog");
+    closeModifButton.addEventListener("click", () => {
+      dialog.close();
+    });
+    //J'ai ajouté ca de plus, ca marche pas rn faque si tu trouve une alternative tu peut delete ce qui a dans le acceptBtnModif.addEventListener
+    acceptBtnModif.addEventListener("click", () => {
+      nouveauTitre = document.getElementById("Nom_jeu").value;
+      nouveauURL = document.getElementById("img_jeu").value;
+      nouveauPlatformes = document.getElementById("platformes");
+      nouveauCategorie = document.getElementById("categories").value;
+      const plateformesSelectione = [];
+      for (const selection of nouveauPlatformes.options) {
+        if (selection.selected || selection.value == "def") {
+          if (selection.value == "Playstation") {
+            plateformesSelectione.push(tableauPlatforme[0]);
+          }
+          if (selection.value == "Xbox") {
+            plateformesSelectione.push(tableauPlatforme[1]);
+          }
+          if (selection.value == "Windows") {
+            plateformesSelectione.push(tableauPlatforme[2]);
+          }
+        }
+      }
+      game = {
+        id: game.id,
+        titre: nouveauTitre,
+        URL: nouveauURL,
+        cat: nouveauCategorie,
+        platformes: plateformesSelectione
+      }
+      dialog.close();
+    })
+    //Je veux mettre du pretext, mais ca marche pas :(((
+    /*document.getElementById("Nom_jeu").placeholder = game.titre;
+    document.getElementById("img_jeu").insertAdjacentHTML('beforebegin', game.URL);
+    document.getElementById("platformes") = game.platformes;
+    document.getElementById("categories").value = game.cat;*/
+
+    const parent = document.getElementsByClassName("jeux");
+    parent[0].replaceChildren();
+    afficherJeux(tableauJeux);
+  })
   //Creer le div pour le titre de jeu
   const nouveauDivTitre = document.createElement("div");
   nouveauDivTitre.classList = "name-cover";
@@ -247,7 +309,9 @@ function afficherUnJeu(game, parent) {
 
   //ajouter les elements a leur parent
   nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
+  nouveauArticle.append(nouveauBtnDelete, nouveauDivTitre);
   nouveauArticle.append(nouveauImg, nouveauDivTitre);
+  nouveauArticle.append(nouveauBtnModif, nouveauDivTitre);
   parent[0].append(nouveauArticle);
 }
 
@@ -359,33 +423,33 @@ acceptButton.addEventListener("click", () => {
   const plateformesSelectione = [];
   for (const selection of nouveauPlatformes.options) {
     if (selection.selected || selection.value == "def") {
-      if(selection.value == "Playstation"){
+      if (selection.value == "Playstation") {
         plateformesSelectione.push(tableauPlatforme[0]);
       }
-      if(selection.value == "Xbox"){
+      if (selection.value == "Xbox") {
         plateformesSelectione.push(tableauPlatforme[1]);
       }
-      if(selection.value == "Windows"){
+      if (selection.value == "Windows") {
         plateformesSelectione.push(tableauPlatforme[2]);
       }
     }
   }
-    //Pour tester
-    console.log(nouveauTitre + ", " + nouveauURL + ", " + plateformesSelectione);
-    //
-    nouveauJeu = {
-      id: tableauJeux.length + 1,
-      titre: nouveauTitre,
-      URL: nouveauURL,
-      cat: nouveauCategorie,
-      platformes: plateformesSelectione
-    }
-    dialog.close();
-    tableauJeux.push(nouveauJeu);
-    const parent = document.getElementsByClassName("jeux");
-    parent[0].replaceChildren();
-    afficherJeux(tableauJeux);
+  //Pour tester
+  console.log(nouveauTitre + ", " + nouveauURL + ", " + plateformesSelectione);
+  //
+  nouveauJeu = {
+    id: tableauJeux.length + 1,
+    titre: nouveauTitre,
+    URL: nouveauURL,
+    cat: nouveauCategorie,
+    platformes: plateformesSelectione
   }
+  dialog.close();
+  tableauJeux.push(nouveauJeu);
+  const parent = document.getElementsByClassName("jeux");
+  parent[0].replaceChildren();
+  afficherJeux(tableauJeux);
+}
 );
 
 
