@@ -224,10 +224,34 @@ function afficherUnJeu(game, parent) {
   nouveauImg.src = game.URL;
   nouveauImg.alt = game.titre;
 
+  //Creer le div pour le titre de jeu
+  const nouveauDivTitre = document.createElement("div");
+  nouveauDivTitre.classList = "name-cover";
+
+  //Creer le titre
+  const nouveauH1 = document.createElement("h1");
+  nouveauH1.textContent = game.titre;
+
+  //Creer un element div pour les plateformes
+  const nouveauDivPlatforme = document.createElement("div");
+  nouveauDivPlatforme.classList = "img_plateform";
+
+  //pour chaque plateforme, ajouter les elements necessaires
+  game.platformes.forEach(function (gamePlatform) {
+    const nouveauImgPlatform = document.createElement("img");
+    nouveauImgPlatform.classList = "img_jeux";
+    nouveauImgPlatform.src = gamePlatform.URL;
+    nouveauImgPlatform.alt = gamePlatform.nom;
+    nouveauDivPlatforme.append(nouveauImgPlatform);
+  });
+
+  //========================================================================
+
   //Creer le bouton delete
   const nouveauBtnDelete = document.createElement("button");
-  nouveauBtnDelete.classList = "btn-del";
-  nouveauBtnDelete.textContent = "Éffacer";
+  nouveauBtnDelete.classList = "btn-jeu";
+  nouveauBtnDelete.textContent = "Effacer";
+
   nouveauBtnDelete.addEventListener("click", () => {
     tableauJeux.splice(tableauJeux.indexOf(game), 1);
     const parent = document.getElementsByClassName("jeux");
@@ -239,7 +263,7 @@ function afficherUnJeu(game, parent) {
   const dialog = document.querySelector("dialog#dialogModif");
   const acceptBtnModif = document.getElementById("modifDialog");
   const nouveauBtnModif = document.createElement("button");
-  nouveauBtnModif.classList = "btn-modif";
+  nouveauBtnModif.classList = "btn-jeu";
   nouveauBtnModif.textContent = "Modifier";
   nouveauBtnModif.addEventListener("click", () => {
     dialog.showModal();
@@ -286,32 +310,11 @@ function afficherUnJeu(game, parent) {
     parent[0].replaceChildren();
     afficherJeux(tableauJeux);
   })
-  //Creer le div pour le titre de jeu
-  const nouveauDivTitre = document.createElement("div");
-  nouveauDivTitre.classList = "name-cover";
-
-  //Creer le titre
-  const nouveauH1 = document.createElement("h1");
-  nouveauH1.textContent = game.titre;
-
-  //Creer un element div pour les plateformes
-  const nouveauDivPlatforme = document.createElement("div");
-  nouveauDivPlatforme.classList = "img_plateform";
-
-  //pour chaque plateforme, ajouter les elements necessaires
-  game.platformes.forEach(function (gamePlatform) {
-    const nouveauImgPlatform = document.createElement("img");
-    nouveauImgPlatform.classList = "img_jeux";
-    nouveauImgPlatform.src = gamePlatform.URL;
-    nouveauImgPlatform.alt = gamePlatform.nom;
-    nouveauDivPlatforme.append(nouveauImgPlatform);
-  });
+  //=======================================================================
 
   //ajouter les elements a leur parent
   nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-  nouveauArticle.append(nouveauBtnDelete, nouveauDivTitre);
-  nouveauArticle.append(nouveauImg, nouveauDivTitre);
-  nouveauArticle.append(nouveauBtnModif, nouveauDivTitre);
+  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover, nouveauDivTitre);
   parent[0].append(nouveauArticle);
 }
 
@@ -477,6 +480,6 @@ selectionPlateforme.addEventListener("change", (event) => {
 
 
 //script
-removeToTest();
-afficherCategorie(tableauCategorie);
-afficherJeux(tableauJeux);
+//removeToTest();
+//afficherCategorie(tableauCategorie);
+//afficherJeux(tableauJeux);

@@ -155,6 +155,9 @@ article {
   position: relative;
   justify-content: center;
   display: flex;
+  flex-direction: column;
+  justify-items: space-around;
+  align-items: center;
 
   border-radius: 10px;
 
@@ -165,7 +168,7 @@ article {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .name-cover {
@@ -178,13 +181,61 @@ article {
 
   position: absolute;
   bottom: 0;
-  z-index: 2;
+  z-index: 1;
 
   margin: 0.5rem;
   width: 95%;
 
   display: flex;
   justify-content: space-between;
+}
+
+.hover-cover{
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+
+  height: 100%;
+  width: 100%;
+
+  opacity: 0;
+}
+
+.bouton-jeu{
+  border: none;
+  background: none;
+
+  color: aliceblue;
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+
+  text-transform: uppercase;
+}
+
+#btn-supprimer{
+  top: 15%
+}
+
+#btn-mod{
+  bottom: 15%;
+}
+
+.hover-cover:hover{
+  opacity: 0.75;
+}
+
+.bouton-jeu:hover ~ .hover-cover{
+  opacity: 0.75;
+} 
+
+article:hover > .bouton-jeu{
+  opacity: 1;
+}
+
+.bouton-jeu:hover{
+  color: rgba(177, 161, 255, 1);
 }
 
 h1 {
@@ -226,8 +277,4 @@ form {
 
 form > * {
   margin: 0.25rem;
-}
-
-.btn-modif{
-  
 }
