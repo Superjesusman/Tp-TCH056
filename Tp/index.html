@@ -14,29 +14,27 @@
   </head>
 
   <body>
-    <dialog id="dialog1">   
+    <dialog id="dialog1">
       <form action="./" method="post">
-        <label for="Nom_jeu">Nom de jeu: </label><input type="text" name="Nom_jeu" id="Nom_jeu" /><br />
-        <label for="img_jeu">URL de l'image: </label><input type="url" name="img_jeu" id="img_jeu" /><br />
+        <label for="Nom_jeu">Nom de jeu: </label
+        ><input type="text" name="Nom_jeu" id="Nom_jeu" /><br />
+        <label for="img_jeu">URL de l'image: </label
+        ><input type="url" name="img_jeu" id="img_jeu" /><br />
         <label for="plateformes">Plateformes: </label>
         <select name="plateformes" id="platformes" multiple>
-            <option value="def">--Veuiller choisir une option--</option>
-            <option value="Xbox">Xbox</option>
-            <option value="Playstation">Playstation</option>
-            <option value="Windows">Windows</option>
-        </select><br />
+          <option value="def">--Veuiller choisir une option--</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+          <option value="Windows">Windows</option></select
+        ><br />
         <input type="submit" value="Valider" />
         <input type="reset" value="Effacer" /><br />
-    </form>
-    <button id="closeDialog">Close</button>
-    <button id="acceptDialog">Accept</button>
+      </form>
+      <button id="closeDialog">Close</button>
+      <button id="acceptDialog">Accept</button>
     </dialog>
-    <div class="conteneur">
+    <main class="conteneur">
       <div class="entete">
-        <img
-          class="logo"
-          src="img\entete\NVPlay-logos\NVPlay-logos_white.png"
-        />
         <a href="?login" class="login">Log in</a>
       </div>
       <div class="menu">
@@ -54,74 +52,79 @@
           <option value="prix-crois">Prix croissant</option>
           <option value="prix-decrois">Prix decroissant</option>
         </select>
-      
       </div>
-      <nav class="categories">
-        <ul>
-          <li>
-            <img src="img/cat/action.png" class="img_categorie" />
-            <a href="?categorie=1">Action</a>
-          </li>
-          <li>
-            <img src="img/cat/adventure.png" class="img_categorie" />
-            <a href="?categorie=2">Adventure</a>
-          </li>
-          <li>
-            <img src="img/cat/arcade.png" class="img_categorie" />
-            <a href="?categorie=3">Arcade</a>
-          </li>
-          <li>
-            <img src="img/cat/board-game.png" class="img_categorie" />
-            <a href="?categorie=4">Board Games</a>
-          </li>
-          <li>
-            <img src="img/cat/casual.png" class="img_categorie" />
-            <a href="?categorie=5">Casual</a>
-          </li>
-          <li>
-            <img src="img/cat/family.png" class="img_categorie" />
-            <a href="?categorie=6">Family</a>
-          </li>
-          <li>
-            <img src="img/cat/indie.png" class="img_categorie" />
-            <a href="?categorie=7">Indie</a>
-          </li>
-          <li>
-            <img src="img/cat/sharing.png" class="img_categorie" />
-            <a href="?categorie=8">MMO</a>
-          </li>
-          <li>
-            <img src="img/cat/platformer.png" class="img_categorie" />
-            <a href="?categorie=9">Platformer</a>
-          </li>
-          <li>
-            <img src="img/cat/puzzle.png" class="img_categorie" />
-            <a href="?categorie=10">Puzzle</a>
-          </li>
-          <li>
-            <img src="img/cat/race-car.png" class="img_categorie" />
-            <a href="?categorie=11">Racing</a>
-          </li>
-          <li>
-            <img src="img/cat/RPG.png" class="img_categorie" />
-            <a href="?categorie=12">RPG</a>
-          </li>
-          <li>
-            <img src="img/cat/shooter.png" class="img_categorie" />
-            <a href="?categorie=13">Shooter</a>
-          </li>
-          <li>
-            <img src="img/cat/simulation.png" class="img_categorie" />
-            <a href="?categorie=14">Simulation</a>
-          </li>
-          <li>
-            <img src="img/cat/sports.png" class="img_categorie" />
-            <a href="?categorie=15">Sports</a>
-          </li>
-        </ul>
+      <div class="sidebar">
+        <img
+          class="logo"
+          src="img\entete\NVPlay-logos\NVPlay-logos_white.png"
+        />
+        <nav class="categories">
+          <ul>
+            <li>
+              <img src="img/cat/action.png" class="img_categorie" />
+              <a href="?categorie=1">Action</a>
+            </li>
+            <li>
+              <img src="img/cat/adventure.png" class="img_categorie" />
+              <a href="?categorie=2">Adventure</a>
+            </li>
+            <li>
+              <img src="img/cat/arcade.png" class="img_categorie" />
+              <a href="?categorie=3">Arcade</a>
+            </li>
+            <li>
+              <img src="img/cat/board-game.png" class="img_categorie" />
+              <a href="?categorie=4">Board Games</a>
+            </li>
+            <li>
+              <img src="img/cat/casual.png" class="img_categorie" />
+              <a href="?categorie=5">Casual</a>
+            </li>
+            <li>
+              <img src="img/cat/family.png" class="img_categorie" />
+              <a href="?categorie=6">Family</a>
+            </li>
+            <li>
+              <img src="img/cat/indie.png" class="img_categorie" />
+              <a href="?categorie=7">Indie</a>
+            </li>
+            <li>
+              <img src="img/cat/sharing.png" class="img_categorie" />
+              <a href="?categorie=8">MMO</a>
+            </li>
+            <li>
+              <img src="img/cat/platformer.png" class="img_categorie" />
+              <a href="?categorie=9">Platformer</a>
+            </li>
+            <li>
+              <img src="img/cat/puzzle.png" class="img_categorie" />
+              <a href="?categorie=10">Puzzle</a>
+            </li>
+            <li>
+              <img src="img/cat/race-car.png" class="img_categorie" />
+              <a href="?categorie=11">Racing</a>
+            </li>
+            <li>
+              <img src="img/cat/RPG.png" class="img_categorie" />
+              <a href="?categorie=12">RPG</a>
+            </li>
+            <li>
+              <img src="img/cat/shooter.png" class="img_categorie" />
+              <a href="?categorie=13">Shooter</a>
+            </li>
+            <li>
+              <img src="img/cat/simulation.png" class="img_categorie" />
+              <a href="?categorie=14">Simulation</a>
+            </li>
+            <li>
+              <img src="img/cat/sports.png" class="img_categorie" />
+              <a href="?categorie=15">Sports</a>
+            </li>
+          </ul>
+        </nav>
         <button id="ajouter-jeu">Nouveau Jeu</button>
-      </nav>
-      <main class="jeux">
+      </div>
+      <section class="jeux">
         <article class="cover">
           <img src="img/Jeux/FNAF.jpg" class="img_jeux" alt="FNAF" />
           <div class="name-cover">
@@ -145,7 +148,7 @@
             </div>
           </div>
         </article>
-        
+
         <article class="cover">
           <img
             src="img/Jeux/Spider_man_2.jpg"
@@ -316,9 +319,9 @@
             </div>
           </div>
         </article>
-      </main>
+      </section>
       <div class="footer">Copyright Gab et Chrichri</div>
-    </div>
+    </main>
   </body>
   <script src="./Scripts/script.js"></script>
 </html>
