@@ -309,7 +309,7 @@ function afficherCategorie(tab) {
 }
 
 //function pour tester !!!
-function removeToTest(){
+function removeToTest() {
   const mySection = document.getElementsByTagName("section");
   mySection[0].replaceChildren();
 

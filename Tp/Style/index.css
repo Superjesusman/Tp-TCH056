@@ -1,14 +1,18 @@
 body {
-  background: rgb(0,0,0);
-  background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(84,122,180,1) 70%, rgba(177,161,255,1) 100%); 
-  font-family: 'DM Mono', monospace;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(84, 122, 180, 1) 70%,
+    rgba(177, 161, 255, 1) 100%
+  );
+  font-family: "DM Mono", monospace;
 }
 
 .conteneur {
   display: grid;
-  /*height: 1vh;*/
   grid-template-columns: 15.625rem auto;
-  grid-template-rows: 15fr 10fr auto 10fr;
+  grid-template-rows: 15% 5% 100fr 10%;
   grid-template-areas:
     "sidebar  entete"
     "sidebar  menu"
@@ -33,7 +37,7 @@ body {
   margin: 1rem;
 }
 
-a{
+a {
   color: black;
   text-decoration: none;
 }
@@ -56,7 +60,7 @@ a{
   height: 6rem;
 }
 
-.categories{
+.categories {
   background-color: white;
   text-transform: uppercase;
 
@@ -85,15 +89,15 @@ nav li {
   opacity: 0.6;
 }
 
-nav button{
+nav button {
   padding: 0;
   border: none;
   background: none;
   margin-left: 1rem;
 }
 
-li:hover{
-  opacity: 1;;
+li:hover {
+  opacity: 1;
 }
 
 .img_categorie {
@@ -101,11 +105,11 @@ li:hover{
   height: 1.8rem;
 }
 
-#ajouter-jeu{
+#ajouter-jeu {
   margin: 1rem;
   size: 150%;
   padding: 0.8rem 2rem;
-  background-color: rgba(177,161,255,1);
+  background-color: rgba(177, 161, 255, 1);
   border: none;
   border-radius: 2px;
 }
@@ -161,23 +165,23 @@ article {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  z-index: 1; 
+  z-index: 1;
 }
 
-.name-cover{
-  background: rgba( 255, 255, 255, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 4px );
-  -webkit-backdrop-filter: blur( 4px );
+.name-cover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
 
-  position:absolute;
+  position: absolute;
   bottom: 0;
   z-index: 2;
 
   margin: 0.5rem;
-  width:95%;
+  width: 95%;
 
   display: flex;
   justify-content: space-between;
@@ -186,11 +190,11 @@ article {
 h1 {
   font-size: 1rem;
   font-weight: lighter;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
   color: aliceblue;
 }
 
-.img_plateform{
+.img_plateform {
   display: flex;
   flex-direction: row;
   justify-items: center;
@@ -198,14 +202,14 @@ h1 {
   margin: 0.25rem;
 }
 
-.img_plateform img{
+.img_plateform img {
   width: 1rem;
   height: 1rem;
   opacity: 0.5;
   margin: 0.25rem;
 }
 
-.footer{
+.footer {
   grid-area: footer;
 
   display: flex;
@@ -213,3 +217,13 @@ h1 {
   margin: 1rem;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /*align-items: center;*/
+}
+
+form > * {
+  margin: 0.25rem;
+}
