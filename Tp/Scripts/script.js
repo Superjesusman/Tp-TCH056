@@ -166,7 +166,7 @@ let tableauCategorie = [
   }),
   (indie = {
     id: 7,
-    nom: "indie",
+    nom: "Indie",
     URL: "img/cat/indie.png",
   }),
   (mmo = {
@@ -259,6 +259,44 @@ function afficherJeux(tab) {
   });
 }
 
+function afficherCategorie(tab) {
+
+  const parent = document.getElementsByTagName("ul");
+
+  //Tous les cat
+  const nouveauLi = document.createElement("li");
+  const nouveauBtn = document.createElement("button");
+  nouveauBtn.textContent = "View All";
+
+  //nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
+  nouveauBtn.addEventListener("click", function () {
+    categorie = null;
+    filtrerJeu();
+  });
+  nouveauLi.append(nouveauBtn);
+  parent[0].append(nouveauLi);
+
+  for (let i = 0; i < tab.length; i++) {
+    const nouveauLi = document.createElement("li");
+
+    const nouveauImg = document.createElement("img");
+    nouveauImg.classList = "img_categorie";
+    nouveauImg.src = tab[i].URL;
+
+    const nouveauBtn = document.createElement("button");
+    nouveauBtn.textContent = tab[i].nom;
+
+    //nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
+    nouveauBtn.addEventListener("click", function () {
+      categorie = tab[i].id;
+      filtrerJeu();
+    });
+
+    nouveauLi.append(nouveauImg, nouveauBtn);
+    parent[0].append(nouveauLi);
+  }
+}
+
 function filtrerJeu() {
   const parent = document.getElementsByTagName("section");
   parent[0].replaceChildren();
@@ -283,29 +321,6 @@ function filtrerJeu() {
       }
     }
   });
-}
-
-function afficherCategorie(tab) {
-  const parent = document.getElementsByTagName("ul");
-
-  for (let i = 0; i < tab.length; i++) {
-    const nouveauLi = document.createElement("li");
-
-    const nouveauImg = document.createElement("img");
-    nouveauImg.classList = "img_categorie";
-    nouveauImg.src = tab[i].URL;
-
-    const nouveauBtn = document.createElement("button");
-    nouveauBtn.textContent = tab[i].nom;
-
-    //nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
-    nouveauBtn.addEventListener("click", function () {
-      categorie = tab[i].id;
-      filtrerJeu();
-    });
-    nouveauLi.append(nouveauImg, nouveauBtn);
-    parent[0].append(nouveauLi);
-  }
 }
 
 //function pour tester !!!

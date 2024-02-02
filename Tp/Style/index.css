@@ -68,7 +68,7 @@ a {
   margin-right: 1rem;
   border-radius: 15px;
   height: fit-content;
-  /*max-height: 95vh;*/
+  max-height: 75vh;
 
   overflow: scroll;
 
