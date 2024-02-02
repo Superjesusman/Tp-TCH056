@@ -249,9 +249,11 @@ function afficherUnJeu(game, parent) {
 
   //Creer le bouton delete
   const nouveauBtnDelete = document.createElement("button");
-  nouveauBtnDelete.classList = "btn-jeu";
+  nouveauBtnDelete.classList = "bouton-jeu";
+  nouveauBtnDelete.id = "btn-supprimer";
   nouveauBtnDelete.textContent = "Effacer";
 
+  //Add event listener pour delete
   nouveauBtnDelete.addEventListener("click", () => {
     tableauJeux.splice(tableauJeux.indexOf(game), 1);
     const parent = document.getElementsByClassName("jeux");
@@ -259,12 +261,16 @@ function afficherUnJeu(game, parent) {
     afficherJeux(tableauJeux);
   })
 
-  //Creer le boutton modif
+  //Creer le boutton modifier
+  const nouveauBtnModif = document.createElement("button");
+  nouveauBtnModif.classList = "bouton-jeu";
+  nouveauBtnModif.id = "btn-mod";
+  nouveauBtnModif.textContent = "Modifier";
+
   const dialog = document.querySelector("dialog#dialogModif");
   const acceptBtnModif = document.getElementById("modifDialog");
-  const nouveauBtnModif = document.createElement("button");
-  nouveauBtnModif.classList = "btn-jeu";
-  nouveauBtnModif.textContent = "Modifier";
+  
+  //Ajouter el
   nouveauBtnModif.addEventListener("click", () => {
     dialog.showModal();
     const closeModifButton = document.getElementById("closeModifDialog");
@@ -312,9 +318,12 @@ function afficherUnJeu(game, parent) {
   })
   //=======================================================================
 
+  const nouveauDivHover = document.createElement("div");
+  nouveauDivHover.classList = "hover-cover";
+
   //ajouter les elements a leur parent
   nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover, nouveauDivTitre);
+  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover,nouveauDivTitre);
   parent[0].append(nouveauArticle);
 }
 
@@ -480,6 +489,6 @@ selectionPlateforme.addEventListener("change", (event) => {
 
 
 //script
-//removeToTest();
-//afficherCategorie(tableauCategorie);
-//afficherJeux(tableauJeux);
+removeToTest();
+afficherCategorie(tableauCategorie);
+afficherJeux(tableauJeux);
