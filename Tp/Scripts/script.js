@@ -245,8 +245,6 @@ function afficherUnJeu(game, parent) {
     nouveauDivPlatforme.append(nouveauImgPlatform);
   });
 
-  //========================================================================
-
   //Creer le bouton delete
   const nouveauBtnDelete = document.createElement("button");
   nouveauBtnDelete.classList = "bouton-jeu";
@@ -269,20 +267,21 @@ function afficherUnJeu(game, parent) {
 
   const dialog = document.querySelector("dialog#dialogModif");
   const acceptBtnModif = document.getElementById("modifDialog");
-  
-  //Ajouter el
+
+  //========================================================================
+
+  //Ajouter event lstener pour valider les modifications
   nouveauBtnModif.addEventListener("click", () => {
     dialog.showModal();
     const closeModifButton = document.getElementById("closeModifDialog");
     closeModifButton.addEventListener("click", () => {
       dialog.close();
     });
-    //J'ai ajouté ca de plus, ca marche pas rn faque si tu trouve une alternative tu peut delete ce qui a dans le acceptBtnModif.addEventListener
     acceptBtnModif.addEventListener("click", () => {
-      nouveauTitre = document.getElementById("Nom_jeu").value;
-      nouveauURL = document.getElementById("img_jeu").value;
-      nouveauPlatformes = document.getElementById("platformes");
-      nouveauCategorie = document.getElementById("categories").value;
+      nouveauTitre = document.getElementById("mod-nom").value;
+      nouveauUrl = document.getElementById("mod-img").value;
+      nouvelleCat = document.getElementById("mod-cat").value;
+      nouveauPlatformes = document.getElementById("mod-plat");
       const plateformesSelectione = [];
       for (const selection of nouveauPlatformes.options) {
         if (selection.selected || selection.value == "def") {
@@ -297,20 +296,36 @@ function afficherUnJeu(game, parent) {
           }
         }
       }
-      game = {
-        id: game.id,
-        titre: nouveauTitre,
-        URL: nouveauURL,
-        cat: nouveauCategorie,
-        platformes: plateformesSelectione
+
+      console.log(nouveauTitre);
+      console.log(game.titre);
+
+      if(nouveauTitre){
+        game.titre = nouveauTitre;
       }
+
+      console.log(nouveauTitre);
+
+      if(nouveauUrl){
+        game.url = nouveauUrl;
+      }
+
+      if(nouvelleCat){
+        game.cat = nouvelleCat;
+      }
+
+      if(nouveauPlatformes){
+        game.platformes = plateformesSelectione;
+      }
+
       dialog.close();
+      const parent = document.getElementsByClassName("jeux");
+      parent[0].replaceChildren();
+      afficherJeux(tableauJeux);
     })
     //Je veux mettre du pretext, mais ca marche pas :(((
-    /*document.getElementById("Nom_jeu").placeholder = game.titre;
-    document.getElementById("img_jeu").insertAdjacentHTML('beforebegin', game.URL);
-    document.getElementById("platformes") = game.platformes;
-    document.getElementById("categories").value = game.cat;*/
+    document.getElementById("mod-nom").placeholder = game.titre;
+    document.getElementById("mod-img").placeholder =  game.URL;
 
     const parent = document.getElementsByClassName("jeux");
     parent[0].replaceChildren();
@@ -323,7 +338,7 @@ function afficherUnJeu(game, parent) {
 
   //ajouter les elements a leur parent
   nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover,nouveauDivTitre);
+  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover, nouveauDivTitre);
   parent[0].append(nouveauArticle);
 }
 
