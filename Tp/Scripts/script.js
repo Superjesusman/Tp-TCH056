@@ -272,7 +272,7 @@ function afficherUnJeu(game, parent) {
     currentGameDeletePos = tableauJeux.indexOf(game);
   })
   closeBtnDelete.addEventListener("click", () => {
-    dialogDelete.showModal();
+    dialogDelete.close();
   })
 
   //Creer le boutton modifier
