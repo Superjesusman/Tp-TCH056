@@ -220,7 +220,44 @@ function addPlatElements(gamePlatform, elt) {
   elt.append(nouveauImgPlatform);
 }
 
+function ajouterBtnSupprimerJeu(game) {
+  //Creer le bouton delete jeu
+  const nouveauBtnDelete = document.createElement("button");
+  nouveauBtnDelete.classList = "bouton-jeu";
+  nouveauBtnDelete.id = "btn-supprimer";
+  nouveauBtnDelete.textContent = "Effacer";
 
+  //Obtenir les elements de dialogues
+  const dialogDelete = document.getElementById("dialogDelete");
+  const acceptBtnDelete = document.getElementById("deleteDialog");
+  const closeBtnDelete = document.getElementById("closeDeleteDialog");
+
+  //Ajouter un event listener pour accepter la suppression
+  acceptBtnDelete.addEventListener("click", () => {
+    if (isDeleting) {
+      tableauJeux.splice(currentGameDeletePos, 1);
+      const parent = document.getElementsByClassName("jeux");
+      parent[0].replaceChildren();
+      afficherJeux(tableauJeux);
+      isDeleting = false;
+      dialogDelete.close();
+    }
+  }, { once: true });
+
+  //Ajouter un event listener pour le bouton delete
+  nouveauBtnDelete.addEventListener("click", () => {
+    dialogDelete.showModal();
+    isDeleting = true;
+    currentGameDeletePos = tableauJeux.indexOf(game);
+  })
+
+  //Ajouter un event listener pour annuler la suppression
+  closeBtnDelete.addEventListener("click", () => {
+    dialogDelete.showModal();
+  })
+
+  return nouveauBtnDelete;
+}
 
 //functions
 
@@ -251,35 +288,8 @@ function afficherUnJeu(game, parent) {
   game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
 
   //Creer le bouton delete
-  const nouveauBtnDelete = document.createElement("button");
-  nouveauBtnDelete.classList = "bouton-jeu";
-  nouveauBtnDelete.id = "btn-supprimer";
-  nouveauBtnDelete.textContent = "Effacer";
-  const dialogDelete = document.getElementById("dialogDelete");
-  const acceptBtnDelete = document.getElementById("deleteDialog");
-  const closeBtnDelete = document.getElementById("closeDeleteDialog");
-
-  acceptBtnDelete.addEventListener("click", () => {
-    if (isDeleting) {
-      tableauJeux.splice(currentGameDeletePos, 1);
-      const parent = document.getElementsByClassName("jeux");
-      parent[0].replaceChildren();
-      afficherJeux(tableauJeux);
-      isDeleting = false;
-      dialogDelete.close();
-    }
-
-  }, { once: true });
-  //Add event listener pour delete
-  nouveauBtnDelete.addEventListener("click", () => {
-    dialogDelete.showModal();
-    isDeleting = true;
-    currentGameDeletePos = tableauJeux.indexOf(game);
-  })
-  closeBtnDelete.addEventListener("click", () => {
-    dialogDelete.close();
-  })
-
+  const nouveauBtnDelete = ajouterBtnSupprimerJeu(game);
+  
   //Creer le boutton modifier
   const nouveauBtnModif = document.createElement("button");
   nouveauBtnModif.classList = "bouton-jeu";
