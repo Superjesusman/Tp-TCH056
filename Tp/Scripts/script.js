@@ -211,6 +211,17 @@ let tableauCategorie = [
   }),
 ];
 
+//functions locales
+function addPlatElements(gamePlatform, elt) {
+  const nouveauImgPlatform = document.createElement("img");
+  nouveauImgPlatform.classList = "img_jeux";
+  nouveauImgPlatform.src = gamePlatform.URL;
+  nouveauImgPlatform.alt = gamePlatform.nom;
+  elt.append(nouveauImgPlatform);
+}
+
+
+
 //functions
 
 function afficherUnJeu(game, parent) {
@@ -237,13 +248,7 @@ function afficherUnJeu(game, parent) {
   nouveauDivPlatforme.classList = "img_plateform";
 
   //pour chaque plateforme, ajouter les elements necessaires
-  game.platformes.forEach(function (gamePlatform) {
-    const nouveauImgPlatform = document.createElement("img");
-    nouveauImgPlatform.classList = "img_jeux";
-    nouveauImgPlatform.src = gamePlatform.URL;
-    nouveauImgPlatform.alt = gamePlatform.nom;
-    nouveauDivPlatforme.append(nouveauImgPlatform);
-  });
+  game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
 
   //Creer le bouton delete
   const nouveauBtnDelete = document.createElement("button");
@@ -255,16 +260,16 @@ function afficherUnJeu(game, parent) {
   const closeBtnDelete = document.getElementById("closeDeleteDialog");
 
   acceptBtnDelete.addEventListener("click", () => {
-    if(isDeleting){
-    tableauJeux.splice(currentGameDeletePos, 1);
-    const parent = document.getElementsByClassName("jeux");
-    parent[0].replaceChildren();
-    afficherJeux(tableauJeux);
-    isDeleting = false;
-    dialogDelete.close();
+    if (isDeleting) {
+      tableauJeux.splice(currentGameDeletePos, 1);
+      const parent = document.getElementsByClassName("jeux");
+      parent[0].replaceChildren();
+      afficherJeux(tableauJeux);
+      isDeleting = false;
+      dialogDelete.close();
     }
 
-  }, {once:true});
+  }, { once: true });
   //Add event listener pour delete
   nouveauBtnDelete.addEventListener("click", () => {
     dialogDelete.showModal();
@@ -284,8 +289,6 @@ function afficherUnJeu(game, parent) {
   const dialog = document.querySelector("dialog#dialogModif");
   const acceptBtnModif = document.getElementById("modifDialog");
 
-  //========================================================================
-
   //Ajouter event lstener pour valider les modifications
   nouveauBtnModif.addEventListener("click", () => {
     dialog.showModal();
@@ -297,69 +300,68 @@ function afficherUnJeu(game, parent) {
     });
 
     acceptBtnModif.addEventListener("click", () => {
-      if(isModifying){
-      nouveauTitre = document.getElementById("mod-nom").value;
-      nouveauUrl = document.getElementById("mod-img").value;
-      nouvelleCat = document.getElementById("mod-cat").value;
-      nouveauPlatformes = document.getElementById("mod-plat");
-      plateformesSelectione = [];
-      for (const selection of nouveauPlatformes.options) {
-        if (selection.selected ) {
-          if (selection.value == "Playstation") {
-            plateformesSelectione.push(tableauPlatforme[0]);
-          }
-          if (selection.value == "Xbox") {
-            plateformesSelectione.push(tableauPlatforme[1]);
-          }
-          if (selection.value == "Windows") {
-            plateformesSelectione.push(tableauPlatforme[2]);
-          }
-          if(selection.value == "def"){
-            plateformesSelectione = currentGame.platformes;
+      if (isModifying) {
+        nouveauTitre = document.getElementById("mod-nom").value;
+        nouveauUrl = document.getElementById("mod-img").value;
+        nouvelleCat = document.getElementById("mod-cat").value;
+        nouveauPlatformes = document.getElementById("mod-plat");
+        plateformesSelectione = [];
+        for (const selection of nouveauPlatformes.options) {
+          if (selection.selected) {
+            if (selection.value == "Playstation") {
+              plateformesSelectione.push(tableauPlatforme[0]);
+            }
+            if (selection.value == "Xbox") {
+              plateformesSelectione.push(tableauPlatforme[1]);
+            }
+            if (selection.value == "Windows") {
+              plateformesSelectione.push(tableauPlatforme[2]);
+            }
+            if (selection.value == "def") {
+              plateformesSelectione = currentGame.platformes;
+            }
           }
         }
+
+        console.log(nouveauTitre);
+        console.log(game.titre);
+
+        if (nouveauTitre) {
+          currentGame.titre = nouveauTitre;
+          document.getElementById("mod-nom").value = "";
+        }
+
+        console.log(nouveauTitre);
+
+        if (nouveauUrl) {
+          currentGame.URL = nouveauUrl;
+          document.getElementById("mod-img").value = "";
+        }
+
+        if (nouvelleCat && nouvelleCat != "def") {
+          currentGame.cat = nouvelleCat;
+          document.getElementById("mod-cat").value = "def";
+        }
+
+        if (nouveauPlatformes && (nouveauPlatformes.value != "")) {
+          currentGame.platformes = plateformesSelectione;
+          var selectPlatformes = document.getElementById("mod-plat");
+
+          // Loop through each option and set selected to false
+          for (var i = 0; i < selectPlatformes.options.length; i++) {
+            selectPlatformes.options[i].selected = false;
+          }
+        }
+        isModifying = false;
+        dialog.close();
+        const parent = document.getElementsByClassName("jeux");
+        parent[0].replaceChildren();
+        afficherJeux(tableauJeux);
       }
-
-      console.log(nouveauTitre);
-      console.log(game.titre);
-
-      if(nouveauTitre){
-        currentGame.titre = nouveauTitre;
-        document.getElementById("mod-nom").value = "";
-      }
-
-      console.log(nouveauTitre);
-
-      if(nouveauUrl){
-        currentGame.URL = nouveauUrl;
-        document.getElementById("mod-img").value ="";
-      }
-
-      if(nouvelleCat && nouvelleCat!="def"){
-        currentGame.cat = nouvelleCat;
-        document.getElementById("mod-cat").value = "def";
-      }
-
-      if(nouveauPlatformes && (nouveauPlatformes.value !="")){
-        currentGame.platformes = plateformesSelectione;
-        var selectPlatformes = document.getElementById("mod-plat");
-
-      // Loop through each option and set selected to false
-      for (var i = 0; i < selectPlatformes.options.length; i++) {
-        selectPlatformes.options[i].selected = false;
-      }
-      }
-      isModifying = false;
-      dialog.close();
-      const parent = document.getElementsByClassName("jeux");
-      parent[0].replaceChildren();
-      afficherJeux(tableauJeux);
-    }
     })
     document.getElementById("mod-nom").placeholder = game.titre;
-    document.getElementById("mod-img").placeholder =  game.URL;
+    document.getElementById("mod-img").placeholder = game.URL;
   })
-  //=======================================================================
 
   const nouveauDivHover = document.createElement("div");
   nouveauDivHover.classList = "hover-cover";
@@ -477,7 +479,7 @@ acceptButton.addEventListener("click", () => {
   nouveauCategorie = document.getElementById("categories").value;
   const plateformesSelectione = [];
   for (const selection of nouveauPlatformes.options) {
-    if (selection.selected ) {
+    if (selection.selected) {
       if (selection.value == "Playstation") {
         plateformesSelectione.push(tableauPlatforme[0]);
       }
@@ -504,12 +506,6 @@ acceptButton.addEventListener("click", () => {
   afficherJeux(tableauJeux);
 }
 );
-
-
-
-
-
-
 
 plat = null;
 categorie = null;
