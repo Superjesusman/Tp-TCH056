@@ -335,15 +335,10 @@ function afficherUnJeu(game, parent) {
           }
         }
 
-        console.log(nouveauTitre);
-        console.log(game.titre);
-
         if (nouveauTitre) {
           currentGame.titre = nouveauTitre;
           document.getElementById("mod-nom").value = "";
         }
-
-        console.log(nouveauTitre);
 
         if (nouveauUrl) {
           currentGame.URL = nouveauUrl;
@@ -456,7 +451,7 @@ function filtrerJeu() {
   });
 }
 
-//function pour tester !!!
+//function pour tester
 function removeToTest() {
   const mySection = document.getElementsByTagName("section");
   mySection[0].replaceChildren();
@@ -470,7 +465,6 @@ const dialog = document.querySelector("dialog#dialog1");
 const btnOuvrirDialog = document.getElementById("ajouter-jeu");
 
 const closeButton = document.getElementById("closeDialog");
-
 const acceptButton = document.getElementById("acceptDialog");
 
 // "Show the dialog" button opens the dialog modally
@@ -485,10 +479,10 @@ closeButton.addEventListener("click", () => {
 
 
 acceptButton.addEventListener("click", () => {
-  nouveauTitre = document.getElementById("Nom_jeu").value;
-  nouveauURL = document.getElementById("img_jeu").value;
-  nouveauPlatformes = document.getElementById("platformes");
-  nouveauCategorie = document.getElementById("categories").value;
+  const nouveauTitre = document.getElementById("Nom_jeu").value;
+  const nouveauURL = document.getElementById("img_jeu").value;
+  const nouveauPlatformes = document.getElementById("platformes");
+  const nouveauCategorie = document.getElementById("categories").value;
   const plateformesSelectione = [];
   for (const selection of nouveauPlatformes.options) {
     if (selection.selected) {
@@ -511,6 +505,7 @@ acceptButton.addEventListener("click", () => {
     cat: nouveauCategorie,
     platformes: plateformesSelectione
   }
+
   dialog.close();
   tableauJeux.push(nouveauJeu);
   const parent = document.getElementsByClassName("jeux");
@@ -523,7 +518,6 @@ plat = null;
 categorie = null;
 const selectionPlateforme = document.getElementById("select-plateformes");
 selectionPlateforme.addEventListener("change", (event) => {
-  console.log(selectionPlateforme.value);
   switch (selectionPlateforme.value) {
     case "PC":
       plat = win;

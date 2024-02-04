@@ -189,7 +189,7 @@ article {
   justify-content: space-between;
 }
 
-.hover-cover{
+.hover-cover {
   background-color: black;
   position: absolute;
   bottom: 0;
@@ -201,7 +201,7 @@ article {
   opacity: 0;
 }
 
-.bouton-jeu{
+.bouton-jeu {
   border: none;
   background: none;
 
@@ -213,27 +213,27 @@ article {
   text-transform: uppercase;
 }
 
-#btn-supprimer{
-  top: 25%
+#btn-supprimer {
+  top: 25%;
 }
 
-#btn-mod{
+#btn-mod {
   bottom: 25%;
 }
 
-.hover-cover:hover{
+.hover-cover:hover {
   opacity: 0.75;
 }
 
-.bouton-jeu:hover ~ .hover-cover{
+.bouton-jeu:hover ~ .hover-cover {
   opacity: 0.75;
-} 
+}
 
-article:hover > .bouton-jeu{
+article:hover > .bouton-jeu {
   opacity: 1;
 }
 
-.bouton-jeu:hover{
+.bouton-jeu:hover {
   color: rgba(177, 161, 255, 1);
 }
 
