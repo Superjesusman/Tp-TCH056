@@ -231,6 +231,15 @@ function ajouterBtnSupprimerJeu(game) {
   const dialogDelete = document.getElementById("dialogDelete");
   const acceptBtnDelete = document.getElementById("deleteDialog");
   const closeBtnDelete = document.getElementById("closeDeleteDialog");
+  let isDeleting;
+  let currentGameDeletePos;
+
+  //Ajouter un event listener pour le bouton delete
+  nouveauBtnDelete.addEventListener("click", () => {
+    dialogDelete.showModal();
+    isDeleting = true;
+    currentGameDeletePos = tableauJeux.indexOf(game);
+  });
 
   //Ajouter un event listener pour accepter la suppression
   acceptBtnDelete.addEventListener("click", () => {
@@ -244,17 +253,10 @@ function ajouterBtnSupprimerJeu(game) {
     }
   }, { once: true });
 
-  //Ajouter un event listener pour le bouton delete
-  nouveauBtnDelete.addEventListener("click", () => {
-    dialogDelete.showModal();
-    isDeleting = true;
-    currentGameDeletePos = tableauJeux.indexOf(game);
-  })
-
   //Ajouter un event listener pour annuler la suppression
   closeBtnDelete.addEventListener("click", () => {
     dialogDelete.showModal();
-  })
+  });
 
   return nouveauBtnDelete;
 }
@@ -289,7 +291,7 @@ function afficherUnJeu(game, parent) {
 
   //Creer le bouton delete
   const nouveauBtnDelete = ajouterBtnSupprimerJeu(game);
-  
+
   //Creer le boutton modifier
   const nouveauBtnModif = document.createElement("button");
   nouveauBtnModif.classList = "bouton-jeu";
@@ -302,8 +304,8 @@ function afficherUnJeu(game, parent) {
   //Ajouter event lstener pour valider les modifications
   nouveauBtnModif.addEventListener("click", () => {
     dialog.showModal();
-    isModifying = true;
-    currentGame = game;
+    let isModifying = true;
+    let currentGame = game;
     const closeModifButton = document.getElementById("closeModifDialog");
     closeModifButton.addEventListener("click", () => {
       dialog.close();
@@ -311,11 +313,11 @@ function afficherUnJeu(game, parent) {
 
     acceptBtnModif.addEventListener("click", () => {
       if (isModifying) {
-        nouveauTitre = document.getElementById("mod-nom").value;
-        nouveauUrl = document.getElementById("mod-img").value;
-        nouvelleCat = document.getElementById("mod-cat").value;
-        nouveauPlatformes = document.getElementById("mod-plat");
-        plateformesSelectione = [];
+        const nouveauTitre = document.getElementById("mod-nom").value;
+        const nouveauUrl = document.getElementById("mod-img").value;
+        const nouvelleCat = document.getElementById("mod-cat").value;
+        const nouveauPlatformes = document.getElementById("mod-plat");
+        let plateformesSelectione = [];
         for (const selection of nouveauPlatformes.options) {
           if (selection.selected) {
             if (selection.value == "Playstation") {
