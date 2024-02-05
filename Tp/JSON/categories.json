@@ -1,0 +1,79 @@
+{ 
+    "categories": [
+    {
+      "id": 1,
+      "nom": "Action",
+      "URL": "img/cat/action.png"
+    },
+    {
+      "id": 2,
+      "nom": "Adventure",
+      "URL": "img/cat/adventure.png"
+    },
+    {
+      "id": 3,
+      "nom": "Arcade",
+      "URL": "img/cat/arcade.png"
+    },
+    {
+      "id": 4,
+      "nom": "Board Games",
+      "URL": "img/cat/board-game.png"
+    },
+    {
+      "id": 5,
+      "nom": "Casual",
+      "URL": "img/cat/casual.png"
+    },
+    {
+      "id": 6,
+      "nom": "Family",
+      "URL": "img/cat/family.png"
+    },
+    {
+      "id": 7,
+      "nom": "Indie",
+      "URL": "img/cat/indie.png"
+    },
+    {
+      "id": 8,
+      "nom": "MMO",
+      "URL": "img/cat/sharing.png"
+    },
+    {
+      "id": 9,
+      "nom": "Platformer",
+      "URL": "img/cat/platformer.png"
+    },
+    {
+      "id": 10,
+      "nom": "Puzzle",
+      "URL": "img/cat/puzzle.png"
+    },
+    {
+      "id": 11,
+      "nom": "Racing",
+      "URL": "img/cat/race-car.png"
+    },
+    {
+      "id": 12,
+      "nom": "RPG",
+      "URL": "img/cat/RPG.png"
+    },
+    {
+      "id": 13,
+      "nom": "Shooter",
+      "URL": "img/cat/shooter.png"
+    },
+    {
+      "id": 14,
+      "nom": "Simulation",
+      "URL": "img/cat/simulation.png"
+    },
+    {
+      "id": 15,
+      "nom": "Sports",
+      "URL": "img/cat/sports.png"
+    }
+    ]  
+}  

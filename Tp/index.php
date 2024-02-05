@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="Style/normalize.css" />
+    <title>Index de jeux</title>
+    <meta charset="utf-8" lang="fr" />
+    <link rel="stylesheet" href="./Style/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <dialog id="dialog1">
+      <form action="./" method="post">
+        <label for="Nom_jeu">Nom de jeu: </label>
+        <input type="text" name="Nom_jeu" id="Nom_jeu" />
+        <label for="img_jeu">URL de l'image: </label>
+        <input type="url" name="img_jeu" id="img_jeu" />
+        <label for="plateformes">Plateformes: </label>
+        <select name="plateformes" id="platformes" multiple>
+          <option value="def">--Veuiller choisir--</option>
+          <option value="Xbox" id="xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+          <option value="Windows">Windows</option>
+        </select>
+        <select name="categories" id="categories">
+          <option value="def">--Veuiller choisir--</option>
+          <option value="1">Action</option>
+          <option value="2">Adventure</option>
+          <option value="3">Arcade</option>
+          <option value="4">Board Games</option>
+          <option value="5">Casual</option>
+          <option value="6">Family</option>
+          <option value="7">Indie</option>
+          <option value="8">MMO</option>
+          <option value="9">Platformer</option>
+          <option value="10">Puzzle</option>
+          <option value="11">Racing</option>
+          <option value="12">RPG</option>
+          <option value="13">Shooter</option>
+          <option value="14">Simulation</option>
+          <option value="15">Sports</option>
+        </select>
+        <div>
+          <input id="acceptDialog" type="button" value="Valider" />
+          <input id="closeDialog" type="reset" value="Annuler" />
+        </div>
+      </form>
+    </dialog>
+    <!--Ceci est la boite de dialog quand on veut modifier les infos d'un jeu-->
+    <dialog id="dialogModif">
+      <form action="./" method="post">
+        <label for="mod-nom">Nom de jeu: </label>
+        <input type="text" name="Nom_jeu" id="mod-nom" />
+        <label for="mod-img">URL de l'image: </label>
+        <input type="url" name="img_jeu" id="mod-img" />
+        <label for="mod-plat">Plateformes: </label>
+        <select name="plateformes" id="mod-plat" multiple>
+          <option value="def">--Veuiller choisir--</option>
+          <option value="Xbox" id="xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+          <option value="Windows">Windows</option>
+        </select>
+        <select id="mod-cat" name="categories">
+          <option value="def">--Veuiller choisir--</option>
+          <option value="1">Action</option>
+          <option value="2">Adventure</option>
+          <option value="3">Arcade</option>
+          <option value="4">Board Games</option>
+          <option value="5">Casual</option>
+          <option value="6">Family</option>
+          <option value="7">Indie</option>
+          <option value="8">MMO</option>
+          <option value="9">Platformer</option>
+          <option value="10">Puzzle</option>
+          <option value="11">Racing</option>
+          <option value="12">RPG</option>
+          <option value="13">Shooter</option>
+          <option value="14">Simulation</option>
+          <option value="15">Sports</option>
+        </select>
+        <div>
+          <input id="modifDialog" type="button" value="Valider" />
+          <input id="closeModifDialog" type="reset" value="Annuler" />
+        </div>
+      </form>
+    </dialog>
+    <dialog id="dialogDelete">
+      <form action="./" method="post">
+        <label for="mod-nom">Êtes-vous sûr de vouloir effacer ce jeu?</label>
+        <div>
+          <input id="deleteDialog" type="button" value="Effacer" />
+          <input id="closeDeleteDialog" type="reset" value="Annuler" />
+        </div>
+      </form>
+    </dialog>
+    <main class="conteneur">
+      <div class="entete">
+        <a href="?login" class="login">Log in</a>
+      </div>
+      <div class="menu">
+        <select name="plateformes" id="select-plateformes" class="bouton-menu">
+          <option value="Toutes">Toutes les plateformes</option>
+          <option value="PC">PC</option>
+          <option value="Xbox">Xbox</option>
+          <option value="Playstation">Playstation</option>
+        </select>
+        <select name="triage" id="bouton-tri" class="bouton-menu">
+          <option value="def">Trier par</option>
+          <option value="pertinence">Pertinence</option>
+          <option value="date">Date de sortie</option>
+          <option value="nom">Nom</option>
+          <option value="prix-crois">Prix croissant</option>
+          <option value="prix-decrois">Prix decroissant</option>
+        </select>
+      </div>
+      <div class="sidebar">
+        <img
+          class="logo"
+          src="img\entete\NVPlay-logos\NVPlay-logos_white.png"
+        />
+        <nav class="categories">
+          <ul>
+            <li>
+              <img src="img/cat/action.png" class="img_categorie" />
+              <a href="?categorie=1">Action</a>
+            </li>
+            <li>
+              <img src="img/cat/adventure.png" class="img_categorie" />
+              <a href="?categorie=2">Adventure</a>
+            </li>
+            <li>
+              <img src="img/cat/arcade.png" class="img_categorie" />
+              <a href="?categorie=3">Arcade</a>
+            </li>
+            <li>
+              <img src="img/cat/board-game.png" class="img_categorie" />
+              <a href="?categorie=4">Board Games</a>
+            </li>
+            <li>
+              <img src="img/cat/casual.png" class="img_categorie" />
+              <a href="?categorie=5">Casual</a>
+            </li>
+            <li>
+              <img src="img/cat/family.png" class="img_categorie" />
+              <a href="?categorie=6">Family</a>
+            </li>
+            <li>
+              <img src="img/cat/indie.png" class="img_categorie" />
+              <a href="?categorie=7">Indie</a>
+            </li>
+            <li>
+              <img src="img/cat/sharing.png" class="img_categorie" />
+              <a href="?categorie=8">MMO</a>
+            </li>
+            <li>
+              <img src="img/cat/platformer.png" class="img_categorie" />
+              <a href="?categorie=9">Platformer</a>
+            </li>
+            <li>
+              <img src="img/cat/puzzle.png" class="img_categorie" />
+              <a href="?categorie=10">Puzzle</a>
+            </li>
+            <li>
+              <img src="img/cat/race-car.png" class="img_categorie" />
+              <a href="?categorie=11">Racing</a>
+            </li>
+            <li>
+              <img src="img/cat/RPG.png" class="img_categorie" />
+              <a href="?categorie=12">RPG</a>
+            </li>
+            <li>
+              <img src="img/cat/shooter.png" class="img_categorie" />
+              <a href="?categorie=13">Shooter</a>
+            </li>
+            <li>
+              <img src="img/cat/simulation.png" class="img_categorie" />
+              <a href="?categorie=14">Simulation</a>
+            </li>
+            <li>
+              <img src="img/cat/sports.png" class="img_categorie" />
+              <a href="?categorie=15">Sports</a>
+            </li>
+          </ul>
+        </nav>
+        <button id="ajouter-jeu">Nouveau Jeu</button>
+      </div>
+      <section class="jeux">
+        <article class="cover">
+          <img src="img/Jeux/FNAF.jpg" class="img_jeux" alt="FNAF" />
+          <!-- <button class="bouton-jeu" id="btn-supprimer">SUPPRIMER</button>
+          <button class="bouton-jeu" id="btn-mod">MODIFIER</button>
+          <div class="hover-cover"></div> -->
+          <div class="name-cover">
+            <h1>Five night's at Freddys</h1>
+            <div class="img_plateform">
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img
+            src="img/Jeux/Grand_Theft_Auto_V.jpg"
+            class="img_jeux"
+            alt="GTAV"
+          />
+          <div class="name-cover">
+            <h1>GTA V</h1>
+            <div class="img_plateform">
+              <img src="img/Xbox.png" alt="Xbox" />
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+
+        <article class="cover">
+          <img
+            src="img/Jeux/Spider_man_2.jpg"
+            class="img_jeux"
+            alt="Spider-man2"
+          />
+          <div class="name-cover">
+            <h1>Spider-man 2</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" />
+            </div>
+          </div>
+        </article>
+
+        <article class="cover">
+          <img src="img/Jeux/Halo.jpg" class="img_jeux" alt="Halo Infinite" />
+          <div class="name-cover">
+            <h1>Halo</h1>
+            <div class="img_plateform">
+              <img src="img/Xbox.png" alt="Xbox" />
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img
+            src="img/Jeux/Lethal_company.jpg"
+            class="img_jeux"
+            alt="Lethal Company"
+          />
+          <div class="name-cover">
+            <h1>Lethal Company</h1>
+            <div class="img_plateform">
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/Portal_2.jpg" class="img_jeux" alt="Portal_2" />
+          <div class="name-cover">
+            <h1>Portal 2</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" />
+              <img src="img/Xbox.png" alt="Xbox" />
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/Uncharted.jpg" class="img_jeux" alt="Uncharted" />
+          <div class="name-cover">
+            <h1>Uncharted</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" />
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/Uno.jpg" class="img_jeux" alt="Uno" />
+          <div class="name-cover">
+            <h1>Uno</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" />
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/Cod.jpg" class="img_jeux" alt="CoD" />
+          <div class="name-cover">
+            <h1>Call of Duty</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" /><img
+                src="img/Xbox.png"
+                alt="Xbox"
+              /><img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img
+            src="img/Jeux/A_short_hike.jpg"
+            class="img_jeux"
+            alt="A Short hike"
+          />
+          <div class="name-cover">
+            <h1>A Short hike</h1>
+            <div class="img_plateform">
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/wow.jpg" class="img_jeux" alt="Warcraft" />
+          <div class="name-cover">
+            <h1>World of Warcraft</h1>
+            <div class="img_plateform">
+              <img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img
+            src="img/Jeux/JUST DANCE GAME.jpg"
+            class="img_jeux"
+            alt="Just Dance"
+          />
+          <div class="name-cover">
+            <h1>Just Dance</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" /><img
+                src="img/Xbox.png"
+                alt="Xbox"
+              />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img
+            src="img/Jeux/Forza.jpg"
+            class="img_jeux"
+            alt="Forza-horizon-5"
+          />
+          <div class="name-cover">
+            <h1>Forza horzion 5</h1>
+            <div class="img_plateform">
+              <img src="img/Xbox.png" alt="Xbox" /><img
+                src="img/Windows.png"
+                alt="Win"
+              />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/sims2.jpg" class="img_jeux" alt="Sims 2" />
+          <div class="name-cover">
+            <h1>Sims 2</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" /><img
+                src="img/Windows.png"
+                alt="Win"
+              />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/FIFA.jpg" class="img_jeux" alt="Fifa_23" />
+          <div class="name-cover">
+            <h1>Fifa 23</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" /><img
+                src="img/Xbox.png"
+                alt="Xbox"
+              />
+            </div>
+          </div>
+        </article>
+        <article class="cover">
+          <img src="img/Jeux/Pacman .jpg" class="img_jeux" alt="Pac-Man" />
+          <div class="name-cover">
+            <h1>Pac-Man</h1>
+            <div class="img_plateform">
+              <img src="img/Playstation.png" alt="Playstation" /><img
+                src="img/Xbox.png"
+                alt="Xbox"
+              /><img src="img/Windows.png" alt="Win" />
+            </div>
+          </div>
+        </article>
+      </section>
+      <div class="footer">Copyright Gab et Chrichri</div>
+    </main>
+  </body>
+  <script src="./Scripts/script.js"></script>
+</html>

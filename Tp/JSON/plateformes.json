@@ -1,0 +1,19 @@
+{
+"platformes": [
+    { 
+      "id": "ps",
+      "nom": "PlayStation",
+      "URL": "img/Playstation.png"
+    },
+    {
+      "id": "xbox",
+      "nom": "Xbox",
+      "URL": "img/Xbox.png"
+    },
+    {
+      "id": "win",
+      "nom": "Windows",
+      "URL": "img/Windows.png"
+    }
+  ]
+}
