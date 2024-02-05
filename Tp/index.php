@@ -66,6 +66,7 @@
           <option value="Windows">Windows</option>
         </select>
         <select id="mod-cat" name="categories">
+          <!-- boucle pour toutes les categories de la base de donnée--> 
           <option value="def">--Veuiller choisir--</option>
           <option value="1">Action</option>
           <option value="2">Adventure</option>
