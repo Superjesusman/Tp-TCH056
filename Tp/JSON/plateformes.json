@@ -2,7 +2,7 @@
 "platformes": [
     { 
       "id": "ps",
-      "nom": "PlayStation",
+      "nom": "Playstation",
       "URL": "img/Playstation.png"
     },
     {

@@ -108,18 +108,14 @@ function afficherUnJeu(game, parent) {
         let plateformesSelectione = [];
         for (const selection of nouveauPlatformes.options) {
           if (selection.selected) {
-            if (selection.value == "Playstation") {
-              plateformesSelectione.push(tableauPlatforme[0]);
-            }
-            if (selection.value == "Xbox") {
-              plateformesSelectione.push(tableauPlatforme[1]);
-            }
-            if (selection.value == "Windows") {
-              plateformesSelectione.push(tableauPlatforme[2]);
-            }
-            if (selection.value == "def") {
-              plateformesSelectione = currentGame.platformes;
-            }
+            for (let i = 0; i < tableauPlatforme.length; i++) {
+              if(tableauPlatforme[i].nom == selection.value){
+                plateformesSelectione.push(tableauPlatforme[i]);
+              }
+              if (selection.value == "def") {
+                plateformesSelectione = currentGame.platformes;
+              }
+            }        
           }
         }
 
