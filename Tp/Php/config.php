@@ -1,8 +1,13 @@
 <?php
-    $conn = new mysqli("db","mydatabase","user","password");
+try {
+    $conn = new PDO("mysql:host=db;dbname=mydatabase", "user", "password");
 
-    if($conn->connect_error){
-        die("Connexion échouée: ". $conn->connect_error);
-    }
-    echo "Connexion réussie!";
+    $conn->setAttribute(
+        PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION
+    );
+    //echo "Connexion réussie";
+} catch (PDOException $e) {
+    echo "Connexion échouée: " . $e->getMessage();
+}
 ?>

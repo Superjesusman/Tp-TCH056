@@ -18,4 +18,6 @@ RUN a2enconf js-no-cache
 # Copy application source
 COPY . /var/www/html/
 
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
 EXPOSE 80
