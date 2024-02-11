@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <footer class="bg-primary text-white text-center py-3 fixed-bottom">
-        <p>&copy; 2024 Babillard de Post-its Électroniques</p>
+        <p>&copy; 2024 Copyright Gab et Chrichri</p>
     </footer>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/Php/config.php';
 
+session_start();
+
 $messageErreur = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = $stmt->fetch();
 
   if ($user && password_verify($password, $user['password'])) {
+    $_SESSION['loggedin'] = true;
     $_SESSION['usager'] = $user['id'];
     header("Location: /index.php");
     exit;

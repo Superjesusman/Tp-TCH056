@@ -1,4 +1,3 @@
-
 //functions locales
 function addPlatElements(gamePlatform, elt) {
   const nouveauImgPlatform = document.createElement("img");

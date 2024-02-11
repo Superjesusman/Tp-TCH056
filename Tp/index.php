@@ -1,3 +1,14 @@
+<?php
+  session_start();
+
+  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $deconnexion == 1){
+    // remove all session variables
+    session_unset();
+
+    // destroy the session
+    session_destroy();
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -101,8 +112,17 @@
     </dialog>
     <main class="conteneur">
       <div class="entete">
-        <a href="?login" class="login">Log in</a>
-      </div>
+<!--         <a href="./login.php" class="login">Log in</a>
+ -->     
+    <?php
+      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        $deconnexion = 0;
+        echo "<a href=\"./?deconnexion=1\" class=\"login\">Deconnexion</a>";
+      } else {
+        echo "<a href=\"./login.php\" class=\"login\">Log in</a>";
+      }
+    ?> 
+</div>
       <div class="menu">
         <select name="plateformes" id="select-plateformes" class="bouton-menu">
           <option value="Toutes">Toutes les plateformes</option>
