@@ -1,7 +1,6 @@
 <?php
   session_start();
-
-  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $deconnexion == 1){
+  if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_GET['deconnexion']) == 1){
     // remove all session variables
     session_unset();
 
@@ -116,10 +115,10 @@
  -->     
     <?php
       if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-        $deconnexion = 0;
         echo "<a href=\"./?deconnexion=1\" class=\"login\">Deconnexion</a>";
       } else {
         echo "<a href=\"./login.php\" class=\"login\">Log in</a>";
+        echo "<a href=\"./newUser.php\" class=\"login\">Register</a>";
       }
     ?> 
 </div>
