@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($user && password_verify($password, $user['password'])) {
     $_SESSION['loggedin'] = true;
     $_SESSION['usager'] = $user['id'];
+    $_SESSION['permission'] = $user['type_usager'];
     header("Location: /index.php");
     exit;
   } else {

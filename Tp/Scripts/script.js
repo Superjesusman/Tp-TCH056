@@ -1,10 +1,14 @@
 //functions locales
-function addPlatElements(gamePlatform, elt) {
-  const nouveauImgPlatform = document.createElement("img");
-  nouveauImgPlatform.classList = "img_jeux";
-  nouveauImgPlatform.src = gamePlatform.URL;
-  nouveauImgPlatform.alt = gamePlatform.nom;
-  elt.append(nouveauImgPlatform);
+function addPlatElements(gamePlatformId, elt) {
+  for (let i = 0; i < tableauPlateformes.length; i++) {
+    if (gamePlatformId == tableauPlateformes[i].id) {
+      const nouveauImgPlatform = document.createElement("img");
+      nouveauImgPlatform.classList = "img_jeux";
+      nouveauImgPlatform.src = tableauPlateformes[i].url_icone;
+      nouveauImgPlatform.alt = tableauPlateformes[i].nom;
+      elt.append(nouveauImgPlatform);
+    }
+  }
 }
 
 function ajouterBtnSupprimerJeu(game) {
@@ -29,16 +33,20 @@ function ajouterBtnSupprimerJeu(game) {
   });
 
   //Ajouter un event listener pour accepter la suppression
-  acceptBtnDelete.addEventListener("click", () => {
-    if (isDeleting) {
-      tableauJeux.splice(currentGameDeletePos, 1);
-      const parent = document.getElementsByClassName("jeux");
-      parent[0].replaceChildren();
-      afficherJeux(tableauJeux);
-      isDeleting = false;
-      dialogDelete.close();
-    }
-  }, { once: true });
+  acceptBtnDelete.addEventListener(
+    "click",
+    () => {
+      if (isDeleting) {
+        tableauJeux.splice(currentGameDeletePos, 1);
+        const parent = document.getElementsByClassName("jeux");
+        parent[0].replaceChildren();
+        afficherJeux(tableauJeux);
+        isDeleting = false;
+        dialogDelete.close();
+      }
+    },
+    { once: true }
+  );
 
   //Ajouter un event listener pour annuler la suppression
   closeBtnDelete.addEventListener("click", () => {
@@ -58,7 +66,7 @@ function afficherUnJeu(game, parent) {
   //Creer le background
   const nouveauImg = document.createElement("img");
   nouveauImg.classList = "img_jeux";
-  nouveauImg.src = game.URL;
+  nouveauImg.src = game.url_image;
   nouveauImg.alt = game.titre;
 
   //Creer le div pour le titre de jeu
@@ -74,91 +82,103 @@ function afficherUnJeu(game, parent) {
   nouveauDivPlatforme.classList = "img_plateform";
 
   //pour chaque plateforme, ajouter les elements necessaires
-  game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
+  for (let i = 0; i < tableauJeuxPlateformes.length; i++) {
+    if (game.id == tableauJeuxPlateformes[i].id_jeux)
+      addPlatElements(
+        tableauJeuxPlateformes[i].id_plateforme,
+        nouveauDivPlatforme
+      );
+  }
+  //game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
 
-  //Creer le bouton delete
-  const nouveauBtnDelete = ajouterBtnSupprimerJeu(game);
+  if (permissions == "admin") {
+    //Creer le bouton delete
+    const nouveauBtnDelete = ajouterBtnSupprimerJeu(game);
 
-  //Creer le boutton modifier
-  const nouveauBtnModif = document.createElement("button");
-  nouveauBtnModif.classList = "bouton-jeu";
-  nouveauBtnModif.id = "btn-mod";
-  nouveauBtnModif.textContent = "Modifier";
+    //Creer le boutton modifier
+    const nouveauBtnModif = document.createElement("button");
+    nouveauBtnModif.classList = "bouton-jeu";
+    nouveauBtnModif.id = "btn-mod";
+    nouveauBtnModif.textContent = "Modifier";
 
-  const dialog = document.querySelector("dialog#dialogModif");
-  const acceptBtnModif = document.getElementById("modifDialog");
+    const dialog = document.querySelector("dialog#dialogModif");
+    const acceptBtnModif = document.getElementById("modifDialog");
 
-  //Ajouter event lstener pour valider les modifications
-  nouveauBtnModif.addEventListener("click", () => {
-    dialog.showModal();
-    let isModifying = true;
-    let currentGame = game;
-    const closeModifButton = document.getElementById("closeModifDialog");
-    closeModifButton.addEventListener("click", () => {
-      dialog.close();
-    });
-
-    acceptBtnModif.addEventListener("click", () => {
-      if (isModifying) {
-        const nouveauTitre = document.getElementById("mod-nom").value;
-        const nouveauUrl = document.getElementById("mod-img").value;
-        const nouvelleCat = document.getElementById("mod-cat").value;
-        const nouveauPlatformes = document.getElementById("mod-plat");
-        let plateformesSelectione = [];
-        for (const selection of nouveauPlatformes.options) {
-          if (selection.selected) {
-            for (let i = 0; i < tableauPlatforme.length; i++) {
-              if(tableauPlatforme[i].nom == selection.value){
-                plateformesSelectione.push(tableauPlatforme[i]);
-              }
-              if (selection.value == "def") {
-                plateformesSelectione = currentGame.platformes;
-              }
-            }        
-          }
-        }
-
-        if (nouveauTitre) {
-          currentGame.titre = nouveauTitre;
-          document.getElementById("mod-nom").value = "";
-        }
-
-        if (nouveauUrl) {
-          currentGame.URL = nouveauUrl;
-          document.getElementById("mod-img").value = "";
-        }
-
-        if (nouvelleCat && nouvelleCat != "def") {
-          currentGame.cat = nouvelleCat;
-          document.getElementById("mod-cat").value = "def";
-        }
-
-        if (nouveauPlatformes && (nouveauPlatformes.value != "")) {
-          currentGame.platformes = plateformesSelectione;
-          var selectPlatformes = document.getElementById("mod-plat");
-
-          // Loop through each option and set selected to false
-          for (var i = 0; i < selectPlatformes.options.length; i++) {
-            selectPlatformes.options[i].selected = false;
-          }
-        }
-        isModifying = false;
+    //Ajouter event lstener pour valider les modifications
+    nouveauBtnModif.addEventListener("click", () => {
+      dialog.showModal();
+      let isModifying = true;
+      let currentGame = game;
+      const closeModifButton = document.getElementById("closeModifDialog");
+      closeModifButton.addEventListener("click", () => {
         dialog.close();
-        const parent = document.getElementsByClassName("jeux");
-        parent[0].replaceChildren();
-        afficherJeux(tableauJeux);
-      }
-    })
-    document.getElementById("mod-nom").placeholder = game.titre;
-    document.getElementById("mod-img").placeholder = game.URL;
-  })
+      });
 
-  const nouveauDivHover = document.createElement("div");
-  nouveauDivHover.classList = "hover-cover";
+      acceptBtnModif.addEventListener("click", () => {
+        if (isModifying) {
+          const nouveauTitre = document.getElementById("mod-nom").value;
+          const nouveauUrl = document.getElementById("mod-img").value;
+          const nouvelleCat = document.getElementById("mod-cat").value;
+          const nouveauPlatformes = document.getElementById("mod-plat");
+          let plateformesSelectione = [];
+          for (const selection of nouveauPlatformes.options) {
+            if (selection.selected) {
+              for (let i = 0; i < tableauPlatforme.length; i++) {
+                if (tableauPlatforme[i].nom == selection.value) {
+                  plateformesSelectione.push(tableauPlatforme[i]);
+                }
+                if (selection.value == "def") {
+                  plateformesSelectione = currentGame.platformes;
+                }
+              }
+            }
+          }
 
+          if (nouveauTitre) {
+            currentGame.titre = nouveauTitre;
+            document.getElementById("mod-nom").value = "";
+          }
+
+          if (nouveauUrl) {
+            currentGame.URL = nouveauUrl;
+            document.getElementById("mod-img").value = "";
+          }
+
+          if (nouvelleCat && nouvelleCat != "def") {
+            currentGame.cat = nouvelleCat;
+            document.getElementById("mod-cat").value = "def";
+          }
+
+          if (nouveauPlatformes && nouveauPlatformes.value != "") {
+            currentGame.platformes = plateformesSelectione;
+            var selectPlatformes = document.getElementById("mod-plat");
+
+            // Loop through each option and set selected to false
+            for (var i = 0; i < selectPlatformes.options.length; i++) {
+              selectPlatformes.options[i].selected = false;
+            }
+          }
+          isModifying = false;
+          dialog.close();
+          const parent = document.getElementsByClassName("jeux");
+          parent[0].replaceChildren();
+          afficherJeux(tableauJeux);
+        }
+      });
+      document.getElementById("mod-nom").placeholder = game.titre;
+      document.getElementById("mod-img").placeholder = game.url_image;
+    });
+    const nouveauDivHover = document.createElement("div");
+    nouveauDivHover.classList = "hover-cover";
+    nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
+    nouveauArticle.append(nouveauImg,nouveauBtnDelete, nouveauBtnModif, nouveauDivHover,nouveauDivTitre);
+  }
+else{
+     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
+    nouveauArticle.append(nouveauImg, nouveauDivTitre);
+}
   //ajouter les elements a leur parent
-  nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-  nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover, nouveauDivTitre);
+
   parent[0].append(nouveauArticle);
 }
 
@@ -171,7 +191,6 @@ function afficherJeux(tab) {
 }
 
 function afficherCategorie(tab) {
-
   const parent = document.getElementsByTagName("ul");
 
   //Tous les cat
@@ -192,10 +211,10 @@ function afficherCategorie(tab) {
 
     const nouveauImg = document.createElement("img");
     nouveauImg.classList = "img_categorie";
-    nouveauImg.src = tab[i].URL;
+    nouveauImg.src = tab[i].url_image;
 
     const nouveauBtn = document.createElement("button");
-    nouveauBtn.textContent = tab[i].nom;
+    nouveauBtn.textContent = tab[i].titre;
 
     //nouveauBtn.addEventListener('click', filtrerJeu(tab[i].id));
     nouveauBtn.addEventListener("click", function () {
@@ -214,18 +233,29 @@ function filtrerJeu() {
   tableauJeux.forEach(function (game) {
     if (categorie) {
       if (plat) {
-        if (game.platformes.includes(plat) && game.cat == categorie) {
-          afficherUnJeu(game, parent);
+        for (let i = 0; i < tableauJeuxPlateformes.length; i++) {
+          if (
+            plat == tableauJeuxPlateformes[i].id_plateforme &&
+            game.id == tableauJeuxPlateformes[i].id_jeux &&
+            game.id_categorie == categorie
+          ) {
+            afficherUnJeu(game, parent);
+          }
         }
       } else {
-        if (game.cat == categorie) {
+        if (game.id_categorie == categorie) {
           afficherUnJeu(game, parent);
         }
       }
     } else {
       if (plat) {
-        if (game.platformes.includes(plat)) {
-          afficherUnJeu(game, parent);
+        for (let i = 0; i < tableauJeuxPlateformes.length; i++) {
+          if (
+            plat == tableauJeuxPlateformes[i].id_plateforme &&
+            game.id == tableauJeuxPlateformes[i].id_jeux
+          ) {
+            afficherUnJeu(game, parent);
+          }
         }
       } else {
         afficherUnJeu(game, parent);
@@ -260,7 +290,6 @@ closeButton.addEventListener("click", () => {
   dialog.close();
 });
 
-
 acceptButton.addEventListener("click", () => {
   const nouveauTitre = document.getElementById("Nom_jeu").value;
   const nouveauURL = document.getElementById("img_jeu").value;
@@ -286,30 +315,29 @@ acceptButton.addEventListener("click", () => {
     titre: nouveauTitre,
     URL: nouveauURL,
     cat: nouveauCategorie,
-    platformes: plateformesSelectione
-  }
+    platformes: plateformesSelectione,
+  };
 
   dialog.close();
   tableauJeux.push(nouveauJeu);
   const parent = document.getElementsByClassName("jeux");
   parent[0].replaceChildren();
   afficherJeux(tableauJeux);
-}
-);
+});
 
-plat = null;
-categorie = null;
+let plat = null;
+let categorie = null;
 const selectionPlateforme = document.getElementById("select-plateformes");
 selectionPlateforme.addEventListener("change", (event) => {
   switch (selectionPlateforme.value) {
     case "PC":
-      plat = win;
+      plat = 3;
       break;
     case "Xbox":
-      plat = xbox;
+      plat = 2;
       break;
     case "Playstation":
-      plat = ps;
+      plat = 1;
       break;
     default:
       plat = null;
@@ -317,9 +345,7 @@ selectionPlateforme.addEventListener("change", (event) => {
   filtrerJeu();
 });
 
-
-
 //script
 removeToTest();
-afficherCategorie(tableauCategorie);
+afficherCategorie(tableauCategories);
 afficherJeux(tableauJeux);
