@@ -32,19 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="stylesheet" type="text/css" href="Style/normalize.css" />
+<link rel="stylesheet" href="./Style/index.css" />
     <meta charset="UTF-8" />
     <title>Inscription</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?val=1" />
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-3">
+    <header>
         <h1>Inscription</h1>
     </header>
 
-    <div class="container my-4">
-        <section id="nouvelUsager" class="mb-4">
+    <div>
+        <section id="nouvelUsager">
             <h2>Créer un compte</h2>
             <?php if($message): ?>
                 <div class="alert alert-danger"><?php echo $message; ?></div>
@@ -65,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" class="form-control" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                <button type="submit" class="btn">S'inscrire</button>
             </form>
         </section>
     </div>
 
-    <footer class="bg-primary text-white text-center py-3 fixed-bottom">
+    <footer>
         <p>&copy; 2024 Copyright Gab et Chrichri</p>
     </footer>
 </body>
