@@ -272,10 +272,12 @@ function removeToTest() {
   const myUl = document.getElementsByTagName("ul");
   myUl[0].replaceChildren();
 }
-
+if (permissions == "admin") {
 //eventlisteners
 const dialog = document.querySelector("dialog#dialog1");
+
 const btnOuvrirDialog = document.getElementById("ajouter-jeu");
+
 
 const closeButton = document.getElementById("closeDialog");
 const acceptButton = document.getElementById("acceptDialog");
@@ -324,6 +326,7 @@ acceptButton.addEventListener("click", () => {
   parent[0].replaceChildren();
   afficherJeux(tableauJeux);
 });
+}
 
 let plat = null;
 let categorie = null;

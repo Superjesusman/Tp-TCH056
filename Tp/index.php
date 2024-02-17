@@ -52,6 +52,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
     let tableauCategories = <?= $listCategoriesJson ?>;
     let tableauJeuxPlateformes = <?= $listJeuxPlateformesJson ?>;
     let tableauPlateformes = <?= $listPlateformesJson ?>;
+    <?php if(!isset($_SESSION['permission'])){
+      $_SESSION['permission'] = 'regulier';
+    }
+    ?>
     let permissions = '<?= $_SESSION['permission'] ?>';
   </script>
 </head>

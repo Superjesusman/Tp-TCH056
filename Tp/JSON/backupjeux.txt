@@ -1,0 +1,116 @@
+[
+      {
+        "id": 1,
+        "titre": "Five Nights at Freddy's",
+        "URL": "img/Jeux/FNAF.jpg",
+        "cat": 7,
+        "platformes": ["win"]
+      },
+      {
+        "id": 2,
+        "titre": "Grand Theft Auto V",
+        "URL": "img/Jeux/Grand_Theft_Auto_V.jpg",
+        "cat": 1,
+        "platformes": ["xbox", "win"]
+      },
+      {
+        "id": 3,
+        "titre": "Spider-Man 2",
+        "URL": "img/Jeux/Spider_man_2.jpg",
+        "cat": 1,
+        "platformes": ["ps"]
+      },
+      {
+        "id": 4,
+        "titre": "Halo: Infinite",
+        "URL": "img/Jeux/Halo.jpg",
+        "cat": 13,
+        "platformes": ["xbox", "win"]
+      },
+      {
+        "id": 5,
+        "titre": "Lethal Company",
+        "URL": "img/Jeux/Lethal_company.jpg",
+        "cat": 7,
+        "platformes": ["win"]
+      },
+      {
+        "id": 6,
+        "titre": "Portal 2",
+        "URL": "img/Jeux/Portal_2.jpg",
+        "cat": 10,
+        "platformes": ["ps", "win", "xbox"]
+      },
+      {
+        "id": 7,
+        "titre": "Uncharted",
+        "URL": "img/Jeux/Uncharted.jpg",
+        "cat": 2,
+        "platformes": ["ps", "win"]
+      },
+      {
+        "id": 8,
+        "titre": "Uno",
+        "URL": "img/Jeux/Uno.jpg",
+        "cat": 4,
+        "platformes": ["win"]
+      },
+      {
+        "id": 9,
+        "titre": "Call of Duty",
+        "URL": "img/Jeux/Cod.jpg",
+        "cat": 13,
+        "platformes": ["ps", "xbox", "win"]
+      },
+      {
+        "id": 10,
+        "titre": "A Short Hike",
+        "URL": "img/Jeux/A_short_hike.jpg",
+        "cat": 5,
+        "platformes": ["win"]
+      },
+      {
+        "id": 11,
+        "titre": "World of Warcraft",
+        "URL": "img/Jeux/wow.jpg",
+        "cat": 8,
+        "platformes": ["win"]
+      },
+      {
+        "id": 12,
+        "titre": "Just Dance",
+        "URL": "img/Jeux/JUST DANCE GAME.jpg",
+        "cat": 6,
+        "platformes": ["ps", "xbox"]
+      },
+      {
+        "id": 13,
+        "titre": "Forza Horizon 5",
+        "URL": "img/Jeux/Forza.jpg",
+        "cat": 11,
+        "platformes": ["xbox", "win"]
+      },
+      {
+        "id": 14,
+        "titre": "Sims 2",
+        "URL": "img/Jeux/sims2.jpg",
+        "cat": 14,
+        "platformes": ["ps", "win"]
+      },
+      {
+        "id": 15,
+        "titre": "Fifa 22",
+        "URL": "img/Jeux/FIFA.jpg",
+        "cat": 15,
+        "platformes": ["ps", "xbox"]
+      },
+      {
+        "id": 16,
+        "titre": "Pac-Man",
+        "URL": "img/Jeux/Pacman .jpg",
+        "cat": 3,
+        "platformes": ["ps", "xbox", "win"]
+      }
+    ]
+  
+  

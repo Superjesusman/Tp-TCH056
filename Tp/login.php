@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit" class="btn btn-primary mt-2 .align-top">
           Se connecter
-        </button> <button class="btn btn-secondary mt-2" onclick="window.location.href='./nouvelUsager.php';">Créer un
+        </button> <button class="btn btn-secondary mt-2" onclick="window.location.href='./newUser.php';">Créer un
           compte</button>
 
       </form>
