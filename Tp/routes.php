@@ -8,10 +8,10 @@ any('/login.php', 'login.php');
 any('/newUser.php', 'newUser.php');
 
 // Routes de l'API (statiques et dynamique)
-get('/api/Index/$id', '/api/Index/getJeu.php');
-post('/api/jeu','/api/Index/postJeu.php');
-post('/api/jeu/$id','/api/Index/modifJeu.php');
-delete('/api/jeu/$id','/api/Index/deleteJeu.php');
+get('/api/jeux/$id', '/api/Index/getJeu.php');
+post('/api/jeux','/api/Index/postJeu.php');
+put('/api/jeux/$id','/api/Index/modifJeu.php');
+delete('/api/jeux/$id','/api/Index/deleteJeu.php');
 
 
 

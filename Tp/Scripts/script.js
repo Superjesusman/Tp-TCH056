@@ -24,28 +24,57 @@ function ajouterBtnSupprimerJeu(game) {
   const closeBtnDelete = document.getElementById("closeDeleteDialog");
   let isDeleting;
   let currentGameDeletePos;
+  let currentGameDeleteId;
 
   //Ajouter un event listener pour le bouton delete
   nouveauBtnDelete.addEventListener("click", () => {
     dialogDelete.showModal();
     isDeleting = true;
     currentGameDeletePos = tableauJeux.indexOf(game);
+    currentGameDeleteId = game.id;
   });
 
+  
   //Ajouter un event listener pour accepter la suppression
+  const jeuxApiUrl = "/api/jeux/";
   acceptBtnDelete.addEventListener(
     "click",
     () => {
       if (isDeleting) {
-        tableauJeux.splice(currentGameDeletePos, 1);
+        
+                fetch("/api/jeux/"+game.id, {
+                    method: 'DELETE', // Méthode HTTP
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('La requête a échoué avec le statut ' + response.status);
+                    }
+                    return response.json(); // Convertir la réponse en JSON
+                })
+                .then(data => {
+                    if(data.error){
+                        throw new Error('Erreur lors de la suppression: '+data.error);
+                    }
+                    parent[0].replaceChildren();
+                    afficherJeux(tableauJeux);
+                    isDeleting = false;
+                    dialogDelete.close();
+                })
+                .catch(error => {
+                    alert("Erreur lors de la suppression du jeu: "+error);
+                    console.error('Erreur lors de la requête:', error);
+                });
+        /*tableauJeux.splice(currentGameDeletePos, 1);
         const parent = document.getElementsByClassName("jeux");
         parent[0].replaceChildren();
         afficherJeux(tableauJeux);
         isDeleting = false;
-        dialogDelete.close();
+        dialogDelete.close();*/
       }
     },
-    { once: true }
   );
 
   //Ajouter un event listener pour annuler la suppression
