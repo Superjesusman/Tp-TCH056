@@ -12,7 +12,7 @@ body {
 .conteneur {
   display: grid;
   grid-template-columns: 15.625rem auto;
-  grid-template-rows: 15% 5% 100fr 10%;
+  grid-template-rows: 15fr 5fr 70fr 10;
   grid-template-areas:
     "sidebar  entete"
     "sidebar  menu"
