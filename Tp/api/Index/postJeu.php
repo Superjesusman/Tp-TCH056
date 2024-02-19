@@ -26,31 +26,39 @@ if(!isset($body->id_categorie) || $body->id_categorie == ""){
     exit;
 }
 
-if(!isset($body->platformes) || $body->platformes == ""){
+if(!isset($body->plateformes) || $body->plateformes == ""){
     http_response_code(400);
     echo "La plateforme est obligatoire";
     exit;
 }
 
 try{
+    
     $stmt = $conn->prepare("INSERT INTO `jeux` (`titre`, `url_image`, `id_categorie`) VALUES (:titre, :url_image, :id_categorie)");
     $stmt->bindValue(":titre", $body->titre);
     $stmt->bindValue(":url_image", $body->url_image);
     $stmt->bindValue(":id_categorie", $body->id_categorie);
     $stmt->execute();
-
-    for( $i = 0; $i < count($body->platformes); $i++ ){
-        $stmt = $conn->prepare("INSERT INTO `jeux_plateformes` (`id_jeux`, `id_plateforme`) VALUES (:id_jeux, :id_plateforme)");
-        $stmt->bindValue(":id_jeux", $body->id);
-        $stmt->bindValue(":id_plateforme", $body->platformes[$i][0]);
-        $stmt->execute();
+    $connId = $conn->lastInsertId();
+    try {
+        for( $i = 0; $i < count($body->plateformes); $i++ ){
+            $stmt = $conn->prepare("INSERT INTO `jeux_plateformes` (`id_jeux`, `id_plateforme`) VALUES (:id_jeux, :id_plateforme)");
+            $stmt->bindValue(":id_jeux",$connId);
+            $stmt->bindValue(":id_plateforme", $body->plateformes[$i]->id);
+            $stmt->execute();
+        }
+    } catch(PDOException $e){
+        http_response_code(500);
+        echo "Erreur lors de l'insertion en BD jeux_plateforme: ".$e->getMessage();
     }
-    $insertion = ["id"=>$conn->lastInsertId(), "titre"=>$body->titre, "url_image"=>$body->url_image,"id_categorie"=>$body->id_categorie];
+    
+    
+    $insertion = ["id"=>$connId, "titre"=>$body->titre, "url_image"=>$body->url_image,"id_categorie"=>$body->id_categorie, "plateformes"=>$body->plateformes] ;
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($insertion);
 } catch (PDOException $e){
     http_response_code(500);
-    echo "Erreur lors de l'insertion en BD: ".$e->getMessage();
+    echo "Erreur lors de l'insertion en BD jeu: ".$e->getMessage();
 }
 
 

@@ -206,6 +206,33 @@ function afficherUnJeu(game, parent) {
               selectPlatformes.options[i].selected = false;
             }
           }
+          const gameIndex = tableauJeux.findIndex(p => p.id == game.id);
+          fetch("/api/jeux/"+game.id, {
+            method: 'PUT', // Méthode HTTP
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(tableauJeux[gameIndex]) // Convertir l'objet de données en chaîne JSON
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La requête a échoué avec le statut ' + response.status);
+            }
+            return response.json(); // Convertir la réponse en JSON
+        })
+        .then(data => {
+            moddedGame = tableauJeux.find((g) => g.id == game.id); 
+            moddedGame.titre = data.titre;
+            moddedGame.id_categorie = data.id_categorie;
+            moddedGame.url_image = data.url_image;
+            afficherJeux();
+        })
+        .catch(error => {
+            
+            alert("Erreur lors de la modification du jeu: "+error);
+            afficherJeux();
+            console.error('Erreur lors de la requête:', error);
+        });
           isModifying = false;
           dialog.close();
           const parent = document.getElementsByClassName("jeux");
@@ -360,26 +387,23 @@ if (permissions == "admin") {
     // HARDCODE TO CHANGE
     for (const selection of nouveauPlatformes.options) {
       if (selection.selected) {
-        if (selection.value == "Playstation") {
-          plateformesSelectione.push(tableauPlateformes[0]);
-        }
-        if (selection.value == "Xbox") {
-          plateformesSelectione.push(tableauPlateformes[1]);
-        }
-        if (selection.value == "Windows") {
-          plateformesSelectione.push(tableauPlateformes[2]);
+        for(let $i=0 ;$i<tableauPlateformes.length ;$i++){
+          if (selection.value==tableauPlateformes[$i].id){
+            plateformesSelectione.push(tableauPlateformes[$i])
+          }
         }
       }
     }
 
-    const nouveauJeu = {
-      id: tableauJeux.length,
+    let nouveauJeu = {
+      id: -1,
       titre: nouveauTitre,
       url_image: nouveauURL,
       id_categorie: nouveauCategorie,
-      platformes: plateformesSelectione,
+      plateformes: plateformesSelectione,
     };
-    tableauJeux.push(nouveauJeu);
+    
+    console.log(tableauJeux);
     afficherJeux();
     fetch("/api/jeux", {
       method: "POST", // Méthode HTTP
@@ -400,29 +424,22 @@ if (permissions == "admin") {
         if (data.error) {
           throw new Error("Erreur lors de la l'ajout: " + data.error);
         }
-        /*const tempjeu = tableauJeux.find((g) => g.id == data.id);
-        tempjeu.titre = data.titre;
-        tempjeu.id_categorie = Number(data.id_categorie);
-        tempjeu.url_image = data.url_image;*/
+        nouveauJeu.id = data.id;
+        nouveauJeu.titre = data.titre;
+        nouveauJeu.id_categorie = Number(data.id_categorie);
+        nouveauJeu.url_image = data.url_image;
+        nouveauJeu.plateformes = data.plateformes;
+        tableauJeux.push(nouveauJeu);
         afficherJeux();
       })
       .catch((error) => {
-        tableauJeux = tableauJeux.filter((g) => g.id != tableauJeux.length + 1);
+        tableauJeux = tableauJeux.filter((g) => g.id != -1);
         alert("Erreur lors de l'ajout du jeu: " + error);
         console.error("Erreur lors de la requête:", error);
       });
 
-    /*nouveauJeu = {
-  id: tableauJeux.length + 1,
-  titre: nouveauTitre,
-  URL: nouveauURL,
-  cat: nouveauCategorie,
-  platformes: plateformesSelectione,
-};*/
-    const parent = document.getElementsByClassName("jeux");
-    parent[0].replaceChildren();
+
     dialog.close();
-    afficherJeux();
   });
 }
 
