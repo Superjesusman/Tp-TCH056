@@ -78,6 +78,38 @@ function ajouterBtnSupprimerJeu(game) {
 }
 
 //functions
+function afficherUneOption(obj, parent) {
+  //Créer une nouvelle option
+  const nouvelleOption = document.createElement("option");
+  nouvelleOption.value = obj.nom;
+  nouvelleOption.id = obj.id;
+  nouvelleOption.textContent = obj.nom;
+  parent[0].append(nouvelleOption);
+}
+
+function afficherOptionPlateforme(tab){
+  const parent = document.getElementsByTagName("plateformes");
+
+  tab.forEach(function (plateforme) {
+    afficherUneOption(plateforme, parent);
+  });
+}
+
+function afficherOptionCategories(tab){
+  const parent = document.getElementsByTagName("categories");
+
+  tab.forEach(function (categorie) {
+    afficherUneOption(categorie, parent);
+  });
+}
+
+function afficherOptionCategories(tab){
+  const parent = document.getElementsByTagName("categories");
+
+  tab.forEach(function (categorie) {
+    afficherUneOption(categorie, parent);
+  });
+}
 
 function afficherUnJeu(game, parent) {
   
@@ -111,7 +143,6 @@ function afficherUnJeu(game, parent) {
         nouveauDivPlatforme
       );
   }
-  //game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
 
   if (permissions == "admin") {
     //Creer le bouton delete
@@ -203,6 +234,7 @@ function afficherUnJeu(game, parent) {
   } else {
     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
     nouveauArticle.append(nouveauImg, nouveauDivTitre);
+  }
   }
   //ajouter les elements a leur parent
 
@@ -304,6 +336,7 @@ function removeToTest() {
   const myUl = document.getElementsByTagName("ul");
   myUl[0].replaceChildren();
 }
+
 if (permissions == "admin") {
   //eventlisteners
   const dialog = document.querySelector("dialog#dialog1");
@@ -313,15 +346,18 @@ if (permissions == "admin") {
   const closeButton = document.getElementById("closeDialog");
   const acceptButton = document.getElementById("acceptDialog");
 
+
   // "Show the dialog" button opens the dialog modally
   btnOuvrirDialog.addEventListener("click", () => {
     dialog.showModal();
   });
+  
 
   // "Close" button closes the dialog
   closeButton.addEventListener("click", () => {
     dialog.close();
   });
+
 
   acceptButton.addEventListener("click", () => {
     const nouveauTitre = document.getElementById("Nom_jeu").value;
@@ -420,5 +456,7 @@ selectionPlateforme.addEventListener("change", (event) => {
 
 //script
 removeToTest();
+afficherOptionCategories(tableauCategories);
+afficherOptionPlateforme(tableauPlateformes);
 afficherCategorie(tableauCategories);
 afficherJeux();
