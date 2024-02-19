@@ -23,8 +23,6 @@ $stmt->execute();
 $listPlateformes = $stmt->fetchAll();
 
 $listPlateformesJson = json_encode($listPlateformes);
-//echo $listJeuxJson;
-//echo $listCategoriesJson;
 
 session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconnexion']) == 1) {
@@ -70,27 +68,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       <label for="plateformes">Plateformes: </label>
       <select name="plateformes" id="platformes" multiple>
         <option value="def">--Veuiller choisir--</option>
-        <option value="Xbox" id="xbox">Xbox</option>
-        <option value="Playstation">Playstation</option>
-        <option value="Windows">Windows</option>
       </select>
       <select name="categories" id="categories">
         <option value="def">--Veuiller choisir--</option>
-        <option value="1">Action</option>
-        <option value="2">Adventure</option>
-        <option value="3">Arcade</option>
-        <option value="4">Board Games</option>
-        <option value="5">Casual</option>
-        <option value="6">Family</option>
-        <option value="7">Indie</option>
-        <option value="8">MMO</option>
-        <option value="9">Platformer</option>
-        <option value="10">Puzzle</option>
-        <option value="11">Racing</option>
-        <option value="12">RPG</option>
-        <option value="13">Shooter</option>
-        <option value="14">Simulation</option>
-        <option value="15">Sports</option>
       </select>
       <div>
         <input id="acceptDialog" type="button" value="Valider" />
@@ -108,28 +88,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       <label for="mod-plat">Plateformes: </label>
       <select name="plateformes" id="mod-plat" multiple>
         <option value="def">--Veuiller choisir--</option>
-        <option value="Xbox" id="xbox">Xbox</option>
-        <option value="Playstation">Playstation</option>
-        <option value="Windows">Windows</option>
       </select>
       <select id="mod-cat" name="categories">
         <!-- boucle pour toutes les categories de la base de donnée-->
         <option value="def">--Veuiller choisir--</option>
-        <option value="1">Action</option>
-        <option value="2">Adventure</option>
-        <option value="3">Arcade</option>
-        <option value="4">Board Games</option>
-        <option value="5">Casual</option>
-        <option value="6">Family</option>
-        <option value="7">Indie</option>
-        <option value="8">MMO</option>
-        <option value="9">Platformer</option>
-        <option value="10">Puzzle</option>
-        <option value="11">Racing</option>
-        <option value="12">RPG</option>
-        <option value="13">Shooter</option>
-        <option value="14">Simulation</option>
-        <option value="15">Sports</option>
       </select>
       <div>
         <input id="modifDialog" type="button" value="Valider" />
@@ -162,17 +124,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
     <div class="menu">
       <select name="plateformes" id="select-plateformes" class="bouton-menu">
         <option value="Toutes">Toutes les plateformes</option>
-        <option value="PC">PC</option>
-        <option value="Xbox">Xbox</option>
-        <option value="Playstation">Playstation</option>
       </select>
       <select name="triage" id="bouton-tri" class="bouton-menu">
         <option value="def">Trier par</option>
-        <option value="pertinence">Pertinence</option>
-        <option value="date">Date de sortie</option>
-        <option value="nom">Nom</option>
-        <option value="prix-crois">Prix croissant</option>
-        <option value="prix-decrois">Prix decroissant</option>
       </select>
     </div>
     <div class="sidebar">
@@ -248,166 +202,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
         }
       }
       ?>
-
     </div>
     <section class="jeux">
-      <article class="cover">
-        <img src="img/Jeux/FNAF.jpg" class="img_jeux" alt="FNAF" />
-        <!-- <button class="bouton-jeu" id="btn-supprimer">SUPPRIMER</button>
-          <button class="bouton-jeu" id="btn-mod">MODIFIER</button>
-          <div class="hover-cover"></div> -->
-        <div class="name-cover">
-          <h1>Five night's at Freddys</h1>
-          <div class="img_plateform">
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Grand_Theft_Auto_V.jpg" class="img_jeux" alt="GTAV" />
-        <div class="name-cover">
-          <h1>GTA V</h1>
-          <div class="img_plateform">
-            <img src="img/Xbox.png" alt="Xbox" />
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-
-      <article class="cover">
-        <img src="img/Jeux/Spider_man_2.jpg" class="img_jeux" alt="Spider-man2" />
-        <div class="name-cover">
-          <h1>Spider-man 2</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" />
-          </div>
-        </div>
-      </article>
-
-      <article class="cover">
-        <img src="img/Jeux/Halo.jpg" class="img_jeux" alt="Halo Infinite" />
-        <div class="name-cover">
-          <h1>Halo</h1>
-          <div class="img_plateform">
-            <img src="img/Xbox.png" alt="Xbox" />
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Lethal_company.jpg" class="img_jeux" alt="Lethal Company" />
-        <div class="name-cover">
-          <h1>Lethal Company</h1>
-          <div class="img_plateform">
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Portal_2.jpg" class="img_jeux" alt="Portal_2" />
-        <div class="name-cover">
-          <h1>Portal 2</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" />
-            <img src="img/Xbox.png" alt="Xbox" />
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Uncharted.jpg" class="img_jeux" alt="Uncharted" />
-        <div class="name-cover">
-          <h1>Uncharted</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" />
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Uno.jpg" class="img_jeux" alt="Uno" />
-        <div class="name-cover">
-          <h1>Uno</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" />
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Cod.jpg" class="img_jeux" alt="CoD" />
-        <div class="name-cover">
-          <h1>Call of Duty</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" /><img src="img/Xbox.png" alt="Xbox" /><img
-              src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/A_short_hike.jpg" class="img_jeux" alt="A Short hike" />
-        <div class="name-cover">
-          <h1>A Short hike</h1>
-          <div class="img_plateform">
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/wow.jpg" class="img_jeux" alt="Warcraft" />
-        <div class="name-cover">
-          <h1>World of Warcraft</h1>
-          <div class="img_plateform">
-            <img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/JUST DANCE GAME.jpg" class="img_jeux" alt="Just Dance" />
-        <div class="name-cover">
-          <h1>Just Dance</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" /><img src="img/Xbox.png" alt="Xbox" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Forza.jpg" class="img_jeux" alt="Forza-horizon-5" />
-        <div class="name-cover">
-          <h1>Forza horzion 5</h1>
-          <div class="img_plateform">
-            <img src="img/Xbox.png" alt="Xbox" /><img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/sims2.jpg" class="img_jeux" alt="Sims 2" />
-        <div class="name-cover">
-          <h1>Sims 2</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" /><img src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/FIFA.jpg" class="img_jeux" alt="Fifa_23" />
-        <div class="name-cover">
-          <h1>Fifa 23</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" /><img src="img/Xbox.png" alt="Xbox" />
-          </div>
-        </div>
-      </article>
-      <article class="cover">
-        <img src="img/Jeux/Pacman .jpg" class="img_jeux" alt="Pac-Man" />
-        <div class="name-cover">
-          <h1>Pac-Man</h1>
-          <div class="img_plateform">
-            <img src="img/Playstation.png" alt="Playstation" /><img src="img/Xbox.png" alt="Xbox" /><img
-              src="img/Windows.png" alt="Win" />
-          </div>
-        </div>
-      </article>
     </section>
     <footer class="footer">&copy; Gab et Chrichri</footer>
   </main>

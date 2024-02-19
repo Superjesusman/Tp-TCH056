@@ -34,39 +34,39 @@ function ajouterBtnSupprimerJeu(game) {
     currentGameDeleteId = game.id;
   });
 
-  
+
   //Ajouter un event listener pour accepter la suppression
   const jeuxApiUrl = "/api/jeux/";
   acceptBtnDelete.addEventListener(
     "click",
     () => {
       if (isDeleting) {
-        
-                fetch("/api/jeux/"+game.id, {
-                    method: 'DELETE', // Méthode HTTP
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('La requête a échoué avec le statut ' + response.status);
-                    }
-                    return response.json(); // Convertir la réponse en JSON
-                })
-                .then(data => {
-                    if(data.error){
-                        throw new Error('Erreur lors de la suppression: '+data.error);
-                    }
-                    parent[0].replaceChildren();
-                    afficherJeux(tableauJeux);
-                    isDeleting = false;
-                    dialogDelete.close();
-                })
-                .catch(error => {
-                    alert("Erreur lors de la suppression du jeu: "+error);
-                    console.error('Erreur lors de la requête:', error);
-                });
+
+        fetch("/api/jeux/" + game.id, {
+          method: 'DELETE', // Méthode HTTP
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('La requête a échoué avec le statut ' + response.status);
+            }
+            return response.json(); // Convertir la réponse en JSON
+          })
+          .then(data => {
+            if (data.error) {
+              throw new Error('Erreur lors de la suppression: ' + data.error);
+            }
+            parent[0].replaceChildren();
+            afficherJeux(tableauJeux);
+            isDeleting = false;
+            dialogDelete.close();
+          })
+          .catch(error => {
+            alert("Erreur lors de la suppression du jeu: " + error);
+            console.error('Erreur lors de la requête:', error);
+          });
         /*tableauJeux.splice(currentGameDeletePos, 1);
         const parent = document.getElementsByClassName("jeux");
         parent[0].replaceChildren();
@@ -86,6 +86,30 @@ function ajouterBtnSupprimerJeu(game) {
 }
 
 //functions
+function afficherUneOption(obj, parent) {
+  //Créer une nouvelle option
+  const nouvelleOption = document.createElement("option");
+  nouvelleOption.value = obj.nom;
+  nouvelleOption.id = obj.id;
+  nouvelleOption.textContent = obj.nom;
+  parent[0].append(nouvelleOption);
+}
+
+function afficherOptionPlateforme(tab){
+  const parent = document.getElementsByTagName("plateformes");
+
+  tab.forEach(function (plateforme) {
+    afficherUneOption(plateforme, parent);
+  });
+}
+
+function afficherOptionCategories(tab){
+  const parent = document.getElementsByTagName("categories");
+
+  tab.forEach(function (categorie) {
+    afficherUneOption(categorie, parent);
+  });
+}
 
 function afficherUnJeu(game, parent) {
   //Créer un nouveau article avec classe "cover"
@@ -118,7 +142,6 @@ function afficherUnJeu(game, parent) {
         nouveauDivPlatforme
       );
   }
-  //game.platformes.forEach(gamePlatform => addPlatElements(gamePlatform, nouveauDivPlatforme));
 
   if (permissions == "admin") {
     //Creer le bouton delete
@@ -200,12 +223,12 @@ function afficherUnJeu(game, parent) {
     const nouveauDivHover = document.createElement("div");
     nouveauDivHover.classList = "hover-cover";
     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-    nouveauArticle.append(nouveauImg,nouveauBtnDelete, nouveauBtnModif, nouveauDivHover,nouveauDivTitre);
+    nouveauArticle.append(nouveauImg, nouveauBtnDelete, nouveauBtnModif, nouveauDivHover, nouveauDivTitre);
   }
-else{
-     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
+  else {
+    nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
     nouveauArticle.append(nouveauImg, nouveauDivTitre);
-}
+  }
   //ajouter les elements a leur parent
 
   parent[0].append(nouveauArticle);
@@ -301,60 +324,61 @@ function removeToTest() {
   const myUl = document.getElementsByTagName("ul");
   myUl[0].replaceChildren();
 }
+
 if (permissions == "admin") {
-//eventlisteners
-const dialog = document.querySelector("dialog#dialog1");
+  //eventlisteners
+  const dialog = document.querySelector("dialog#dialog1");
 
-const btnOuvrirDialog = document.getElementById("ajouter-jeu");
+  const btnOuvrirDialog = document.getElementById("ajouter-jeu");
 
 
-const closeButton = document.getElementById("closeDialog");
-const acceptButton = document.getElementById("acceptDialog");
+  const closeButton = document.getElementById("closeDialog");
+  const acceptButton = document.getElementById("acceptDialog");
 
-// "Show the dialog" button opens the dialog modally
-btnOuvrirDialog.addEventListener("click", () => {
-  dialog.showModal();
-});
+  // "Show the dialog" button opens the dialog modally
+  btnOuvrirDialog.addEventListener("click", () => {
+    dialog.showModal();
+  });
 
-// "Close" button closes the dialog
-closeButton.addEventListener("click", () => {
-  dialog.close();
-});
+  // "Close" button closes the dialog
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+  });
 
-acceptButton.addEventListener("click", () => {
-  const nouveauTitre = document.getElementById("Nom_jeu").value;
-  const nouveauURL = document.getElementById("img_jeu").value;
-  const nouveauPlatformes = document.getElementById("platformes");
-  const nouveauCategorie = document.getElementById("categories").value;
-  const plateformesSelectione = [];
-  for (const selection of nouveauPlatformes.options) {
-    if (selection.selected) {
-      if (selection.value == "Playstation") {
-        plateformesSelectione.push(tableauPlatforme[0]);
-      }
-      if (selection.value == "Xbox") {
-        plateformesSelectione.push(tableauPlatforme[1]);
-      }
-      if (selection.value == "Windows") {
-        plateformesSelectione.push(tableauPlatforme[2]);
+  acceptButton.addEventListener("click", () => {
+    const nouveauTitre = document.getElementById("Nom_jeu").value;
+    const nouveauURL = document.getElementById("img_jeu").value;
+    const nouveauPlatformes = document.getElementById("platformes");
+    const nouveauCategorie = document.getElementById("categories").value;
+    const plateformesSelectione = [];
+    for (const selection of nouveauPlatformes.options) {
+      if (selection.selected) {
+        if (selection.value == "Playstation") {
+          plateformesSelectione.push(tableauPlatforme[0]);
+        }
+        if (selection.value == "Xbox") {
+          plateformesSelectione.push(tableauPlatforme[1]);
+        }
+        if (selection.value == "Windows") {
+          plateformesSelectione.push(tableauPlatforme[2]);
+        }
       }
     }
-  }
 
-  nouveauJeu = {
-    id: tableauJeux.length + 1,
-    titre: nouveauTitre,
-    URL: nouveauURL,
-    cat: nouveauCategorie,
-    platformes: plateformesSelectione,
-  };
+    nouveauJeu = {
+      id: tableauJeux.length + 1,
+      titre: nouveauTitre,
+      URL: nouveauURL,
+      cat: nouveauCategorie,
+      platformes: plateformesSelectione,
+    };
 
-  dialog.close();
-  tableauJeux.push(nouveauJeu);
-  const parent = document.getElementsByClassName("jeux");
-  parent[0].replaceChildren();
-  afficherJeux(tableauJeux);
-});
+    dialog.close();
+    tableauJeux.push(nouveauJeu);
+    const parent = document.getElementsByClassName("jeux");
+    parent[0].replaceChildren();
+    afficherJeux(tableauJeux);
+  });
 }
 
 let plat = null;
@@ -379,5 +403,7 @@ selectionPlateforme.addEventListener("change", (event) => {
 
 //script
 removeToTest();
+afficherOptionCategories(tableauCategories);
+afficherOptionPlateforme(tableauPlateformes);
 afficherCategorie(tableauCategories);
 afficherJeux(tableauJeux);
