@@ -66,10 +66,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       <label for="img_jeu">URL de l'image: </label>
       <input type="url" name="img_jeu" id="img_jeu" />
       <label for="plateformes">Plateformes: </label>
-      <select name="plateformes" id="platformes" multiple>
+      <select name="plateformes" id="platformes" class="select-platforme" multiple>
         <option value="def">--Veuiller choisir--</option>
       </select>
-      <select name="categories" id="categories">
+      <select name="categories" id="categories" class="select-cat">
         <option value="def">--Veuiller choisir--</option>
       </select>
       <div>
@@ -86,10 +86,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       <label for="mod-img">URL de l'image: </label>
       <input type="url" name="img_jeu" id="mod-img" />
       <label for="mod-plat">Plateformes: </label>
-      <select name="plateformes" id="mod-plat" multiple>
+      <select name="plateformes" id="mod-plat" class="select-platforme" multiple>
         <option value="def">--Veuiller choisir--</option>
       </select>
-      <select id="mod-cat" name="categories">
+      <select id="mod-cat" name="categories" class="select-cat">
         <!-- boucle pour toutes les categories de la base de donnée-->
         <option value="def">--Veuiller choisir--</option>
       </select>
@@ -122,7 +122,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       ?>
     </div>
     <div class="menu">
-      <select name="plateformes" id="select-plateformes" class="bouton-menu">
+      <select name="plateformes" id="select-plateformes" class="bouton-menu select-platforme">
         <option value="Toutes">Toutes les plateformes</option>
       </select>
       <select name="triage" id="bouton-tri" class="bouton-menu">

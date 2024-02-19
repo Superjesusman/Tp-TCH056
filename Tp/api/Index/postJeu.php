@@ -45,9 +45,6 @@ try{
         $stmt->bindValue(":id_plateforme", $body->platformes[$i]->id);
         $stmt->execute();
     }
-    
-    
-
     $insertion = ["id"=>$conn->lastInsertId(), "titre"=>$body->titre, "url_image"=>$body->url_image,"id_categorie"=>$body->id_categorie];
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($insertion);

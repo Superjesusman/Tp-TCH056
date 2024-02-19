@@ -51,7 +51,7 @@ function ajouterBtnSupprimerJeu(game) {
           if (data.error) {
             throw new Error("Erreur lors de la suppression: " + data.error);
           }
-          tableauJeux = tableauJeux.filter((g)=>(g.id!=game.id));
+          tableauJeux = tableauJeux.filter((g) => g.id != game.id);
           afficherJeux();
         })
         .catch((error) => {
@@ -77,42 +77,38 @@ function ajouterBtnSupprimerJeu(game) {
   return nouveauBtnDelete;
 }
 
-//functions
 function afficherUneOption(obj, parent) {
   //Créer une nouvelle option
   const nouvelleOption = document.createElement("option");
-  nouvelleOption.value = obj.nom;
+  nouvelleOption.value = obj.titre;
   nouvelleOption.id = obj.id;
-  nouvelleOption.textContent = obj.nom;
-  parent[0].append(nouvelleOption);
+  nouvelleOption.textContent = obj.titre;
+  parent.append(nouvelleOption);
 }
 
-function afficherOptionPlateforme(tab){
-  const parent = document.getElementsByTagName("plateformes");
+//functions
 
-  tab.forEach(function (plateforme) {
-    afficherUneOption(plateforme, parent);
-  });
+function afficherOptionPlateforme(tab) {
+  const listeParents = document.getElementsByClassName("select-plateforme");
+
+  for (let i = 0; i < listeParents.length; i++)  {
+    tab.forEach(function (plateforme) {
+      afficherUneOption(plateforme, listeParents[i]);
+    });
+  }
 }
 
-function afficherOptionCategories(tab){
-  const parent = document.getElementsByTagName("categories");
+function afficherOptionCategories(tab) {
+  const listeParents = document.getElementsByClassName("select-cat");
 
-  tab.forEach(function (categorie) {
-    afficherUneOption(categorie, parent);
-  });
-}
-
-function afficherOptionCategories(tab){
-  const parent = document.getElementsByTagName("categories");
-
-  tab.forEach(function (categorie) {
-    afficherUneOption(categorie, parent);
-  });
+  for (let i = 0; i < listeParents.length; i++) {
+    tab.forEach(function (categorie) {
+      afficherUneOption(categorie, listeParents[i]);
+    });
+  } 
 }
 
 function afficherUnJeu(game, parent) {
-  
   //Créer un nouveau article avec classe "cover"
   const nouveauArticle = document.createElement("article");
   nouveauArticle.classList = "cover";
@@ -235,7 +231,7 @@ function afficherUnJeu(game, parent) {
     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
     nouveauArticle.append(nouveauImg, nouveauDivTitre);
   }
-  }
+
   //ajouter les elements a leur parent
 
   parent[0].append(nouveauArticle);
@@ -346,18 +342,15 @@ if (permissions == "admin") {
   const closeButton = document.getElementById("closeDialog");
   const acceptButton = document.getElementById("acceptDialog");
 
-
   // "Show the dialog" button opens the dialog modally
   btnOuvrirDialog.addEventListener("click", () => {
     dialog.showModal();
   });
-  
 
   // "Close" button closes the dialog
   closeButton.addEventListener("click", () => {
     dialog.close();
   });
-
 
   acceptButton.addEventListener("click", () => {
     const nouveauTitre = document.getElementById("Nom_jeu").value;
@@ -366,7 +359,7 @@ if (permissions == "admin") {
     const nouveauCategorie = document.getElementById("categories").value;
     const plateformesSelectione = [];
     // HARDCODE TO CHANGE
-   for (const selection of nouveauPlatformes.options) {
+    for (const selection of nouveauPlatformes.options) {
       if (selection.selected) {
         if (selection.value == "Playstation") {
           plateformesSelectione.push(tableauPlateformes[0]);
@@ -415,7 +408,7 @@ if (permissions == "admin") {
         afficherJeux();
       })
       .catch((error) => {
-        tableauJeux = tableauJeux.filter((g) => g.id != tableauJeux.length+1);
+        tableauJeux = tableauJeux.filter((g) => g.id != tableauJeux.length + 1);
         alert("Erreur lors de l'ajout du jeu: " + error);
         console.error("Erreur lors de la requête:", error);
       });
