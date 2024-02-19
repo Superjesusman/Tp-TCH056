@@ -23,59 +23,51 @@ function ajouterBtnSupprimerJeu(game) {
   const acceptBtnDelete = document.getElementById("deleteDialog");
   const closeBtnDelete = document.getElementById("closeDeleteDialog");
   let isDeleting;
-  let currentGameDeletePos;
-  let currentGameDeleteId;
 
   //Ajouter un event listener pour le bouton delete
   nouveauBtnDelete.addEventListener("click", () => {
     dialogDelete.showModal();
     isDeleting = true;
-    currentGameDeletePos = tableauJeux.indexOf(game);
-    currentGameDeleteId = game.id;
   });
 
-  
   //Ajouter un event listener pour accepter la suppression
-  const jeuxApiUrl = "/api/jeux/";
-  acceptBtnDelete.addEventListener(
-    "click",
-    () => {
-      if (isDeleting) {
-        
-                fetch("/api/jeux/"+game.id, {
-                    method: 'DELETE', // Méthode HTTP
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('La requête a échoué avec le statut ' + response.status);
-                    }
-                    return response.json(); // Convertir la réponse en JSON
-                })
-                .then(data => {
-                    if(data.error){
-                        throw new Error('Erreur lors de la suppression: '+data.error);
-                    }
-                    parent[0].replaceChildren();
-                    afficherJeux(tableauJeux);
-                    isDeleting = false;
-                    dialogDelete.close();
-                })
-                .catch(error => {
-                    alert("Erreur lors de la suppression du jeu: "+error);
-                    console.error('Erreur lors de la requête:', error);
-                });
-        /*tableauJeux.splice(currentGameDeletePos, 1);
+  acceptBtnDelete.addEventListener("click", () => {
+    if (isDeleting) {
+      fetch("/api/jeux/" + game.id, {
+        method: "DELETE", // Méthode HTTP
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "La requête a échoué avec le statut " + response.status
+            );
+          }
+          return response.json(); // Convertir la réponse en JSON
+        })
+        .then((data) => {
+          if (data.error) {
+            throw new Error("Erreur lors de la suppression: " + data.error);
+          }
+          tableauJeux = tableauJeux.filter((g)=>(g.id!=game.id));
+          afficherJeux();
+        })
+        .catch((error) => {
+          alert("Erreur lors de la suppression du jeu: " + error);
+          console.error("Erreur lors de la requête:", error);
+        });
+      isDeleting = false;
+      dialogDelete.close();
+      /*tableauJeux.splice(currentGameDeletePos, 1);
         const parent = document.getElementsByClassName("jeux");
         parent[0].replaceChildren();
         afficherJeux(tableauJeux);
         isDeleting = false;
         dialogDelete.close();*/
-      }
-    },
-  );
+    }
+  });
 
   //Ajouter un event listener pour annuler la suppression
   closeBtnDelete.addEventListener("click", () => {
@@ -88,6 +80,7 @@ function ajouterBtnSupprimerJeu(game) {
 //functions
 
 function afficherUnJeu(game, parent) {
+  
   //Créer un nouveau article avec classe "cover"
   const nouveauArticle = document.createElement("article");
   nouveauArticle.classList = "cover";
@@ -191,7 +184,7 @@ function afficherUnJeu(game, parent) {
           dialog.close();
           const parent = document.getElementsByClassName("jeux");
           parent[0].replaceChildren();
-          afficherJeux(tableauJeux);
+          afficherJeux();
         }
       });
       document.getElementById("mod-nom").placeholder = game.titre;
@@ -200,23 +193,33 @@ function afficherUnJeu(game, parent) {
     const nouveauDivHover = document.createElement("div");
     nouveauDivHover.classList = "hover-cover";
     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
-    nouveauArticle.append(nouveauImg,nouveauBtnDelete, nouveauBtnModif, nouveauDivHover,nouveauDivTitre);
-  }
-else{
-     nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
+    nouveauArticle.append(
+      nouveauImg,
+      nouveauBtnDelete,
+      nouveauBtnModif,
+      nouveauDivHover,
+      nouveauDivTitre
+    );
+  } else {
+    nouveauDivTitre.append(nouveauH1, nouveauDivPlatforme);
     nouveauArticle.append(nouveauImg, nouveauDivTitre);
-}
+  }
   //ajouter les elements a leur parent
 
   parent[0].append(nouveauArticle);
 }
 
-function afficherJeux(tab) {
+function afficherJeux() {
   const parent = document.getElementsByTagName("section");
-
-  tab.forEach(function (game) {
+  removeJeux();
+  tableauJeux.forEach(function (game) {
     afficherUnJeu(game, parent);
   });
+}
+
+function removeJeux() {
+  const mySection = document.getElementsByTagName("section");
+  mySection[0].replaceChildren();
 }
 
 function afficherCategorie(tab) {
@@ -302,59 +305,97 @@ function removeToTest() {
   myUl[0].replaceChildren();
 }
 if (permissions == "admin") {
-//eventlisteners
-const dialog = document.querySelector("dialog#dialog1");
+  //eventlisteners
+  const dialog = document.querySelector("dialog#dialog1");
 
-const btnOuvrirDialog = document.getElementById("ajouter-jeu");
+  const btnOuvrirDialog = document.getElementById("ajouter-jeu");
 
+  const closeButton = document.getElementById("closeDialog");
+  const acceptButton = document.getElementById("acceptDialog");
 
-const closeButton = document.getElementById("closeDialog");
-const acceptButton = document.getElementById("acceptDialog");
+  // "Show the dialog" button opens the dialog modally
+  btnOuvrirDialog.addEventListener("click", () => {
+    dialog.showModal();
+  });
 
-// "Show the dialog" button opens the dialog modally
-btnOuvrirDialog.addEventListener("click", () => {
-  dialog.showModal();
-});
+  // "Close" button closes the dialog
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+  });
 
-// "Close" button closes the dialog
-closeButton.addEventListener("click", () => {
-  dialog.close();
-});
-
-acceptButton.addEventListener("click", () => {
-  const nouveauTitre = document.getElementById("Nom_jeu").value;
-  const nouveauURL = document.getElementById("img_jeu").value;
-  const nouveauPlatformes = document.getElementById("platformes");
-  const nouveauCategorie = document.getElementById("categories").value;
-  const plateformesSelectione = [];
-  for (const selection of nouveauPlatformes.options) {
-    if (selection.selected) {
-      if (selection.value == "Playstation") {
-        plateformesSelectione.push(tableauPlatforme[0]);
-      }
-      if (selection.value == "Xbox") {
-        plateformesSelectione.push(tableauPlatforme[1]);
-      }
-      if (selection.value == "Windows") {
-        plateformesSelectione.push(tableauPlatforme[2]);
+  acceptButton.addEventListener("click", () => {
+    const nouveauTitre = document.getElementById("Nom_jeu").value;
+    const nouveauURL = document.getElementById("img_jeu").value;
+    const nouveauPlatformes = document.getElementById("platformes");
+    const nouveauCategorie = document.getElementById("categories").value;
+    const plateformesSelectione = [];
+    // HARDCODE TO CHANGE
+   for (const selection of nouveauPlatformes.options) {
+      if (selection.selected) {
+        if (selection.value == "Playstation") {
+          plateformesSelectione.push(tableauPlateformes[0]);
+        }
+        if (selection.value == "Xbox") {
+          plateformesSelectione.push(tableauPlateformes[1]);
+        }
+        if (selection.value == "Windows") {
+          plateformesSelectione.push(tableauPlateformes[2]);
+        }
       }
     }
-  }
 
-  nouveauJeu = {
-    id: tableauJeux.length + 1,
-    titre: nouveauTitre,
-    URL: nouveauURL,
-    cat: nouveauCategorie,
-    platformes: plateformesSelectione,
-  };
+    const nouveauJeu = {
+      id: tableauJeux.length,
+      titre: nouveauTitre,
+      url_image: nouveauURL,
+      id_categorie: nouveauCategorie,
+      platformes: plateformesSelectione,
+    };
+    tableauJeux.push(nouveauJeu);
+    afficherJeux();
+    fetch("/api/jeux", {
+      method: "POST", // Méthode HTTP
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nouveauJeu), // Convertir l'objet de données en chaîne JSON
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "La requête a échoué avec le statut " + response.status
+          );
+        }
+        return response.json(); // Convertir la réponse en JSON
+      })
+      .then((data) => {
+        if (data.error) {
+          throw new Error("Erreur lors de la l'ajout: " + data.error);
+        }
+        /*const tempjeu = tableauJeux.find((g) => g.id == data.id);
+        tempjeu.titre = data.titre;
+        tempjeu.id_categorie = Number(data.id_categorie);
+        tempjeu.url_image = data.url_image;*/
+        afficherJeux();
+      })
+      .catch((error) => {
+        tableauJeux = tableauJeux.filter((g) => g.id != tableauJeux.length+1);
+        alert("Erreur lors de l'ajout du jeu: " + error);
+        console.error("Erreur lors de la requête:", error);
+      });
 
-  dialog.close();
-  tableauJeux.push(nouveauJeu);
-  const parent = document.getElementsByClassName("jeux");
-  parent[0].replaceChildren();
-  afficherJeux(tableauJeux);
-});
+    /*nouveauJeu = {
+  id: tableauJeux.length + 1,
+  titre: nouveauTitre,
+  URL: nouveauURL,
+  cat: nouveauCategorie,
+  platformes: plateformesSelectione,
+};*/
+    const parent = document.getElementsByClassName("jeux");
+    parent[0].replaceChildren();
+    dialog.close();
+    afficherJeux();
+  });
 }
 
 let plat = null;
@@ -380,4 +421,4 @@ selectionPlateforme.addEventListener("change", (event) => {
 //script
 removeToTest();
 afficherCategorie(tableauCategories);
-afficherJeux(tableauJeux);
+afficherJeux();
