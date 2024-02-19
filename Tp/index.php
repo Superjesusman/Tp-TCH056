@@ -133,66 +133,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && isset($_GET['deconn
       <img class="logo" src="img\entete\NVPlay-logos\NVPlay-logos_white.png" />
       <nav class="categories">
         <ul>
-          <li>
-            <img src="img/cat/action.png" class="img_categorie" />
-            <a href="?categorie=1">Action</a>
-          </li>
-          <li>
-            <img src="img/cat/adventure.png" class="img_categorie" />
-            <a href="?categorie=2">Adventure</a>
-          </li>
-          <li>
-            <img src="img/cat/arcade.png" class="img_categorie" />
-            <a href="?categorie=3">Arcade</a>
-          </li>
-          <li>
-            <img src="img/cat/board-game.png" class="img_categorie" />
-            <a href="?categorie=4">Board Games</a>
-          </li>
-          <li>
-            <img src="img/cat/casual.png" class="img_categorie" />
-            <a href="?categorie=5">Casual</a>
-          </li>
-          <li>
-            <img src="img/cat/family.png" class="img_categorie" />
-            <a href="?categorie=6">Family</a>
-          </li>
-          <li>
-            <img src="img/cat/indie.png" class="img_categorie" />
-            <a href="?categorie=7">Indie</a>
-          </li>
-          <li>
-            <img src="img/cat/sharing.png" class="img_categorie" />
-            <a href="?categorie=8">MMO</a>
-          </li>
-          <li>
-            <img src="img/cat/platformer.png" class="img_categorie" />
-            <a href="?categorie=9">Platformer</a>
-          </li>
-          <li>
-            <img src="img/cat/puzzle.png" class="img_categorie" />
-            <a href="?categorie=10">Puzzle</a>
-          </li>
-          <li>
-            <img src="img/cat/race-car.png" class="img_categorie" />
-            <a href="?categorie=11">Racing</a>
-          </li>
-          <li>
-            <img src="img/cat/RPG.png" class="img_categorie" />
-            <a href="?categorie=12">RPG</a>
-          </li>
-          <li>
-            <img src="img/cat/shooter.png" class="img_categorie" />
-            <a href="?categorie=13">Shooter</a>
-          </li>
-          <li>
-            <img src="img/cat/simulation.png" class="img_categorie" />
-            <a href="?categorie=14">Simulation</a>
-          </li>
-          <li>
-            <img src="img/cat/sports.png" class="img_categorie" />
-            <a href="?categorie=15">Sports</a>
-          </li>
         </ul>
       </nav>
       <?php

@@ -67,12 +67,6 @@ function ajouterBtnSupprimerJeu(game) {
             alert("Erreur lors de la suppression du jeu: " + error);
             console.error('Erreur lors de la requête:', error);
           });
-        /*tableauJeux.splice(currentGameDeletePos, 1);
-        const parent = document.getElementsByClassName("jeux");
-        parent[0].replaceChildren();
-        afficherJeux(tableauJeux);
-        isDeleting = false;
-        dialogDelete.close();*/
       }
     },
   );
@@ -100,6 +94,14 @@ function afficherOptionPlateforme(tab){
 
   tab.forEach(function (plateforme) {
     afficherUneOption(plateforme, parent);
+  });
+}
+
+function afficherOptionCategories(tab){
+  const parent = document.getElementsByTagName("categories");
+
+  tab.forEach(function (categorie) {
+    afficherUneOption(categorie, parent);
   });
 }
 
