@@ -42,7 +42,7 @@ try{
     for( $i = 0; $i < count($body->platformes); $i++ ){
         $stmt = $conn->prepare("INSERT INTO `jeux_plateformes` (`id_jeux`, `id_plateforme`) VALUES (:id_jeux, :id_plateforme)");
         $stmt->bindValue(":id_jeux", $body->id);
-        $stmt->bindValue(":id_plateforme", $body->platformes[$i]->id);
+        $stmt->bindValue(":id_plateforme", $body->platformes[$i][0]);
         $stmt->execute();
     }
     $insertion = ["id"=>$conn->lastInsertId(), "titre"=>$body->titre, "url_image"=>$body->url_image,"id_categorie"=>$body->id_categorie];

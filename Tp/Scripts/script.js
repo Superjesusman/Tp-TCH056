@@ -80,8 +80,7 @@ function ajouterBtnSupprimerJeu(game) {
 function afficherUneOption(obj, parent) {
   //Créer une nouvelle option
   const nouvelleOption = document.createElement("option");
-  nouvelleOption.value = obj.titre;
-  nouvelleOption.id = obj.id;
+  nouvelleOption.value = obj.id;
   nouvelleOption.textContent = obj.titre;
   parent.append(nouvelleOption);
 }
@@ -89,7 +88,7 @@ function afficherUneOption(obj, parent) {
 //functions
 
 function afficherOptionPlateforme(tab) {
-  const listeParents = document.getElementsByClassName("select-plateforme");
+  const listeParents = document.getElementsByClassName("selectPlatforme");
 
   for (let i = 0; i < listeParents.length; i++)  {
     tab.forEach(function (plateforme) {
